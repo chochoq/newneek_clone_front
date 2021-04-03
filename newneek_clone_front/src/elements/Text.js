@@ -29,7 +29,7 @@ Text.defaultProps = {
     bold: false,
     color: "#161616",
     size: "14px",
-    margin: "0",
+    margin: false,
     padding: false,
     underline: "none",
     _onClick: () => {},
