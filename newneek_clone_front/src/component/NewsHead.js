@@ -6,6 +6,9 @@ import { Text } from "../elements";
 import { history } from "../redux/configureStore";
 
 const NewsHead = (props) => {
+    const createdAt = props.article.createdAt;
+    const date = createdAt.split(" ")[0].toString();
+
     return (
         <Center>
             <Text
@@ -23,7 +26,7 @@ const NewsHead = (props) => {
             <Text size="2.3rem" letterSpacing="`0.75rem" bold padding="7px 0 28px">
                 {props.article.title}
             </Text>
-            <Text size="1rem">{props.article.createdAt}</Text>
+            <Text size="1rem">{date}</Text>
         </Center>
     );
 };
