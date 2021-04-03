@@ -29,7 +29,7 @@ Text.defaultProps = {
     bold: false,
     color: "#161616",
     size: "14px",
-    margin: false,
+    margin: "0",
     padding: false,
     underline: "none",
     _onClick: () => {},
@@ -41,7 +41,7 @@ const P = styled.p`
     font-weight: ${(props) => (props.bold ? "700" : "400")};
     letter-spacing: ${(props) => props.letterSpacing};
     ${(props) => (props.padding ? `margin: ${props.padding};` : "")};
-    ${(props) => (props.margin ? `padding: ${props.padding};` : "")};
+    ${(props) => (props.margin ? `padding: ${props.margin};` : "")};
 `;
 
 const Underline = styled.p`
@@ -51,7 +51,7 @@ const Underline = styled.p`
     letter-spacing: ${(props) => props.letterSpacing};
     text-decoration: underline;
     ${(props) => (props.padding ? `margin: ${props.padding};` : "")};
-    ${(props) => (props.margin ? `padding: ${props.padding};` : "")};
+    ${(props) => (props.margin ? `padding: ${props.margin};` : "")};
 `;
 
 export default Text;

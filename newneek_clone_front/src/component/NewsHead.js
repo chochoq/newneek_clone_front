@@ -23,7 +23,7 @@ const NewsHead = (props) => {
             >
                 {props.article.category}
             </Text>
-            <Text size="2.3rem" letterSpacing="`0.75rem" bold padding="7px 0 28px">
+            <Text size="2.3rem" letterSpacing="`0.75rem" bold padding=".5rem 0 2rem">
                 {props.article.title}
             </Text>
             <Text size="1rem">{date}</Text>
