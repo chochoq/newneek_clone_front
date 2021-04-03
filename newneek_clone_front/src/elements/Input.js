@@ -3,46 +3,59 @@ import styled from "styled-components";
 import { Text, Grid } from "./index";
 
 const Input = (props) => {
-    const { label, placeholder, _onChange, type, value, is_submit, onSubmit } = props;
+    const { placeholder, _onChange, type, value, is_search, onSubmit } = props;
 
     return (
         <React.Fragment>
-            <Grid>
-                {label && <Text margin="0px">{label}</Text>}
-                {is_submit ? (
-                    <InputStyle
-                        type={type}
-                        placeholder={placeholder}
-                        onChange={_onChange}
-                        value={value}
-                        // onKeyPress={(e) => {
-                        //     if (e.key === "Enter") {
-                        //         onSubmit(e);
-                        //     }
-                        // }}
-                    />
-                ) : (
-                    <InputStyle type={type} placeholder={placeholder} onChange={_onChange} />
-                )}
-            </Grid>
+            {is_search ? (
+                <SearchStyle
+                    type={type}
+                    placeholder={placeholder}
+                    onChange={_onChange}
+                    onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                            onSubmit(e);
+                        }
+                    }}
+                />
+            ) : (
+                <LetterStyle
+                    type={type}
+                    placeholder={placeholder}
+                    onChange={_onChange}
+                    onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                            onSubmit(e);
+                        }
+                    }}
+                />
+            )}
         </React.Fragment>
     );
 };
 
 Input.defaultProps = {
-    multiLine: false,
-    label: false,
     placeholder: "텍스트를 입력해주세요.",
     type: "text",
-    is_submit: false,
     onSubmit: () => {},
     _onChange: () => {},
 };
 
-const InputStyle = styled.input`
-    border: 1px solid #666;
-    width: 100%;
-    padding: 20px 4px;
+const LetterStyle = styled.input`
+    border: 1px solid #161616;
+    background-color: #fff;
+    height: 48px;
+    width: 400px;
+    padding: 10px 20px;
+    box-sizing: border-box;
+`;
+
+const SearchStyle = styled.input`
+    border: 1px solid #161616;
+    background-color: #fff;
+    height: 52px;
+    width: 530px;
+    padding: 10px 40px 11px 1.5rem;
     box-sizing: border-box;
 `;
 
