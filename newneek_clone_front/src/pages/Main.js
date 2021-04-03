@@ -24,7 +24,7 @@ Main.defaultProps = {
     title   : "제목",
     image   : "이미지",
     contents  : "내용",
-    id : "뉴스게시글" 
+    id : 0,
 }
 
 export default Main;

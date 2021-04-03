@@ -32,9 +32,9 @@ Card.defaultProps = {
     createdAt :"2021-02-27 10:00:00",
     category : "카테고리",
     title   : "제목",
-    image   : "이미지",
+    image   : "https://newneek.co/static/media/episode1.ed37b877.png",
     contents  : "내용",
-    id : "뉴스게시글"
+    id : 0,
 }
 
 export default Card;
