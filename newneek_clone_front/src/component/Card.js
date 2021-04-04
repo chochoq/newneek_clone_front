@@ -31,25 +31,29 @@ const Card = (props) => {
                 <CardBody>
                     <Text padding="0.5em 0em" size="1.25rem" bold>{props.title}</Text>
                     <CardText>{props.contents}</CardText>
-                    <CardDate>{props.createdAt}</CardDate>
-                    <CardCategory>{props.category}</CardCategory>
+                    <CardSmall>
+                        <CardDate>{props.createdAt}</CardDate>
+                        <CardCategory>{props.category}</CardCategory>
+                    </CardSmall>
                 </CardBody>
             </CardInner>
         </CardDiv>
 
     )
 }
-
+// todo
+//  카드에 top 부분에 마진인지 뭔지가 들어가서 카드가 띄어져있음. 해결요망
 const CardDiv = styled.div`
     box-sizing: border-box;
+    grid-auto-rows: auto;
     position: relative;
-    display: block;
     width: 25%;
+    /* outline-color : 1px solid #161616; */
     color: #161616;
     border: 1px solid #161616;
     border-width: 0 1px 1px 1px;
     cursor: pointer;
-    margin:0%;
+    display:inline-block;
     &:hover {
         background-color: #fff;
         color: #161616;
@@ -66,36 +70,35 @@ const CardInner = styled.div`
 const CardBody = styled.div`
     padding: 0rem 0.75rem;
     box-sizing: border-box;
+    font-weight:normal;
 `;
 
 const CardText = styled.div`
-    display: -webkit-box;
     margin: 0 0 1.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: normal;
-    height: 3.6em;
-    font-size: 0.9rem;
-    text-align: left;
+    height: 3em;
+    /* text-align: left; */
     word-wrap: break-word;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    box-sizing: border-box;
+`;
+
+const CardSmall = styled.div`
+    font-size: 0.2rem;
+    
 `;
 
 const CardDate = styled.div`
-    position: absolute;
     bottom: 1.5rem;
-    font-size: 0.5rem;
-    box-sizing: border-box;
+    position: absolute;
 `;
 
 const CardCategory = styled.div`
-    position: absolute;
     left:5.3rem;
     bottom: 1.5rem;
-    font-size: 0.5rem;
-    box-sizing: border-box;
+    position: absolute;
 `;
 
 

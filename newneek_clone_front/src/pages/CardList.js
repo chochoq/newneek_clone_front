@@ -65,7 +65,7 @@ const CardList = (props) => {
                 {api.map((CardList) => {
                     return <Card key={CardList.id} {...CardList} />;
                 })}
-                <Button margin="2rem auto">더보기</Button>
+                <Button margin="2em 5em 2em 35%" width="30%">더보기</Button>
             </List>
             
         </React.Fragment>
@@ -74,7 +74,7 @@ const CardList = (props) => {
 
 const List = styled.div`
     margin:auto;
-    padding:0 10%;
+    padding:0 18%;
 `;
     
 
