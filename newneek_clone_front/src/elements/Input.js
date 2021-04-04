@@ -3,11 +3,13 @@ import styled from "styled-components";
 import { Text, Grid } from "./index";
 
 const Input = (props) => {
-    const { placeholder, _onChange, type, value, is_search, onSubmit } = props;
+    const { placeholder, _onChange, type, value, is_search, onSubmit, is_check } = props;
 
     return (
         <React.Fragment>
-            {is_search ? (
+            {is_check ? (
+                <CheckStyle type={type} />
+            ) : is_search ? (
                 <SearchStyle
                     type={type}
                     placeholder={placeholder}
@@ -36,7 +38,7 @@ const Input = (props) => {
 
 Input.defaultProps = {
     placeholder: "텍스트를 입력해주세요.",
-    type: "text",
+    // type: "text",
     onSubmit: () => {},
     _onChange: () => {},
 };
@@ -48,6 +50,8 @@ const LetterStyle = styled.input`
     width: 400px;
     padding: 10px 20px;
     box-sizing: border-box;
+    display: block;
+    margin-bottom: 0.5rem;
 `;
 
 const SearchStyle = styled.input`
@@ -57,6 +61,17 @@ const SearchStyle = styled.input`
     width: 530px;
     padding: 10px 40px 11px 1.5rem;
     box-sizing: border-box;
+    display: block;
+`;
+
+const CheckStyle = styled.input`
+    background-color: #ebebeb;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 3px 12px 3px 4px;
+    border: 1px solid #161616;
+    width: 16px;
+    height: 16px;
 `;
 
 export default Input;

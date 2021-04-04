@@ -3,10 +3,17 @@ body {
     padding: 0px;
     font-size: 14.5px;
     font-weight: 500;
+    line-height: 1.8;
     background-color: #ebebeb;
     font-family: "Noto Sans KR", "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
         "Droid Sans", "Helvetica Neue", sans-serif;
 }
+
+p {
+    margin: 0px;
+}
+
+/*      Head wave     */
 
 .navbar-top:before {
     background: linear-gradient(-45deg, #ebebeb 11px, transparent 0),
@@ -24,6 +31,44 @@ body {
     z-index: 7;
 }
 
+.input-check {
+    background-color: #ebebeb;
+    border-radius: 0;
+    cursor: default;
+    box-sizing: border-box;
+    margin: 3px 12px 3px 4px;
+    border: 1px solid #161616;
+    width: 16px;
+    height: 16px;
+}
+
+/*     category   */
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+}
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 4;
+}
+.normal {
+    text-decoration: none;
+}
+
+.is_active {
+    border-bottom: 3px solid #000;
+}
+
+.is_active > * {
+    margin-bottom: -3px;
+}
+
+/*    search icon     */
 .icon-search:before {
     content: "";
     display: block;
@@ -46,6 +91,7 @@ body {
     transform: rotate(45deg) translate(3px, -5px);
 }
 
+/*   Economy     */
 .arrow:before {
     background: inherit;
     position: absolute;
