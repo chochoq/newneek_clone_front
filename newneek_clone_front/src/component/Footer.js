@@ -1,7 +1,6 @@
 import React from "react";
 import "../shared/App.css";
 import styled from "styled-components";
-import { Text } from "../elements/index";
 
 import logo from "../shared/logo.png";
 

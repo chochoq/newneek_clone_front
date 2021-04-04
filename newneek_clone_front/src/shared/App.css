@@ -45,3 +45,27 @@ body {
     background-color: #161616;
     transform: rotate(45deg) translate(3px, -5px);
 }
+
+.arrow:before {
+    background: inherit;
+    position: absolute;
+    width: 17px;
+    height: 2px;
+    content: "";
+    background-color: #161616;
+    right: 0;
+    transform: rotate(-50deg);
+    transform-origin: top right;
+}
+
+.arrow:after {
+    background: inherit;
+    position: absolute;
+    width: 17px;
+    height: 2px;
+    content: "";
+    background-color: #161616;
+    right: 0;
+    transform: rotate(50deg);
+    transform-origin: bottom right;
+}
