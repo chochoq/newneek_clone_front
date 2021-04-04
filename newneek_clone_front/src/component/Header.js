@@ -1,7 +1,7 @@
 import React from "react";
 import "../shared/App.css";
 import styled from "styled-components";
-import { Grid, Text, Button } from "../elements";
+import { Button } from "../elements";
 
 import logo from "../shared/logo.png";
 
@@ -9,37 +9,47 @@ import { history } from "../redux/configureStore";
 
 const Header = () => {
     return (
-        <NavBar>
-            <NavBarInner>
-                <NavBarMenu>
-                    <HeadButton>💰경제기본기</HeadButton>
+        <>
+            <NavBarTop className="navbar-top"></NavBarTop>
 
-                    <HeadButton>🌹여성의 날</HeadButton>
-                </NavBarMenu>
-                <NavBarLogo
-                    onClick={() => {
-                        history.push("/");
-                    }}
-                >
-                    <img src={logo} alt="logo" width="220px" />
-                </NavBarLogo>
-                <NavBarMenu>
-                    <Button
-                        is_header
+            <NavBar>
+                <NavBarInner>
+                    <NavBarMenu>
+                        <HeadButton>💰경제기본기</HeadButton>
+
+                        <HeadButton>🌹여성의 날</HeadButton>
+                    </NavBarMenu>
+                    <NavBarLogo
                         onClick={() => {
-                            history.push("/search");
+                            history.push("/");
                         }}
                     >
-                        <i className="icon-search"></i>
-                    </Button>
-                    <Button is_header>
-                        <ImojiButton>🦔</ImojiButton>
-                    </Button>
-                </NavBarMenu>
-            </NavBarInner>
-        </NavBar>
+                        <img src={logo} alt="logo" width="220px" />
+                    </NavBarLogo>
+                    <NavBarMenu>
+                        <Button
+                            is_header
+                            onClick={() => {
+                                history.push("/search");
+                            }}
+                        >
+                            <i className="icon-search"></i>
+                        </Button>
+                        <Button is_header>
+                            <ImojiButton>🦔</ImojiButton>
+                        </Button>
+                    </NavBarMenu>
+                </NavBarInner>
+            </NavBar>
+        </>
     );
 };
+
+const NavBarTop = styled.div`
+    height: 30px;
+    background: #fff;
+    position: relative;
+`;
 
 const NavBar = styled.nav`
     border-bottom: 1px solid #161616;

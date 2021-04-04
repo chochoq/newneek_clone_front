@@ -5,8 +5,6 @@ import styled from "styled-components";
 import { Button } from "../elements";
 
 // 라우터
-import { history } from "../redux/configureStore";
-import { Route } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const Hire = () => {
@@ -42,21 +40,9 @@ const P2 = styled.p`
 `;
 
 const Center = styled.div`
-    width: 100%;
     background-color: #fff;
     text-align: center;
     padding: 24px 55px 10px;
-`;
-
-const A = styled.a`
-    width: 100%;
-    cursor: pointer;
-    href: https://www.notion.so/2021-9c2e445194794c879ff5af7378061b2a;
-    text-decoration: none;
-`;
-
-const StyledLink = styled(Link)`
-    text-decoration: none;
 `;
 
 Hire.defaultProps = {};
