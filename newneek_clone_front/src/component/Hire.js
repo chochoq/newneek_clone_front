@@ -4,9 +4,6 @@ import "../shared/App.css";
 import styled from "styled-components";
 import { Button } from "../elements";
 
-// 라우터
-import { Link } from "react-router-dom";
-
 const Hire = () => {
     return (
         <a
@@ -25,7 +22,7 @@ const Hire = () => {
 };
 
 const P = styled.p`
-    size: 17px;
+    font-size: 18px;
     font-weight: 700;
     color: #161616;
     margin: 0;
@@ -36,7 +33,7 @@ const P2 = styled.p`
     font-size: 14px;
     font-weight: 700;
     color: #161616;
-    margin: 10px;
+    margin: 2px 0 6px;
 `;
 
 const Center = styled.div`

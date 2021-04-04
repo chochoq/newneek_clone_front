@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../shared/App.css";
 import styled from "styled-components";
 import { Text } from "../elements/index";
