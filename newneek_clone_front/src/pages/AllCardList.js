@@ -1,4 +1,4 @@
-// CardList.js
+// AllCardList.js
 import React,{ useEffect, useReducer, useState }  from "react";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -24,7 +24,7 @@ import { Grid, Text, Button, Image } from "../elements";
 // contents  : 뉴스 내용
 // id : 뉴스 게시글 프라이머리키 
 
-const CardList = (props) => {
+const AllCardList = (props) => {
 
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -55,15 +55,15 @@ const CardList = (props) => {
     
     
     return (
-        <React.Fragment>
+        <React.Fragment> 
             {/* todo 온클릭이벤트시 상세페이지로이동 */}
             <List
                 onClick={() => {
                     // history.push(`/postDetail/${p.id}`);
                     }}
             >
-                {api.map((CardList) => {
-                    return <Card key={CardList.id} {...CardList} />;
+                {api.map((AllCardList) => {
+                    return <Card key={AllCardList.id} {...AllCardList} />;
                 })}
                 <Button margin="2em 5em 2em 35%" width="30%">더보기</Button>
             </List>
@@ -78,7 +78,7 @@ const List = styled.div`
 `;
     
 
-CardList.defaultProps = {
+AllCardList.defaultProps = {
     createdAt :"2021-02-27 10:00:00",
     category : "카테고리",
     title   : "제목",
@@ -87,4 +87,4 @@ CardList.defaultProps = {
     id : 0,
 }
 
-export default CardList;
+export default AllCardList;
