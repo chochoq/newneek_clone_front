@@ -65,7 +65,9 @@ const CardList = (props) => {
                 {api.map((CardList) => {
                     return <Card key={CardList.id} {...CardList} />;
                 })}
+                <Button margin="2rem auto">더보기</Button>
             </List>
+            
         </React.Fragment>
     )
 }

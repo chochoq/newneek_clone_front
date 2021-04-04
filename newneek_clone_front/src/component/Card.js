@@ -50,6 +50,11 @@ const CardDiv = styled.div`
     border-width: 0 1px 1px 1px;
     cursor: pointer;
     margin:0%;
+    &:hover {
+        background-color: #fff;
+        color: #161616;
+        border: 1px solid #161616;
+    }
 `;
 
 const CardInner = styled.div`
@@ -104,6 +109,3 @@ Card.defaultProps = {
 }
 
 export default Card;
-
-
-// 플렉스 스타트 넓이를 준것
