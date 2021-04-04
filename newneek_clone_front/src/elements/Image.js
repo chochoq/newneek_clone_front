@@ -13,6 +13,7 @@ const Image = (props) => {
         return <ImageCircle {...styles}></ImageCircle>;
     }
 
+    // 뉴스 썸네일
     if (shape === "rectangle") {
         return (
             <AspectOutter>
@@ -43,8 +44,11 @@ const ImageDefault = styled.div`
 `;
 
 const AspectOutter = styled.div`
-    width: 100%;
-    min-width: 250px;
+    width: auto;
+    height: auto;
+    border-bottom: 1px solid #161616;
+    border-radius: 0;
+    overflow: hidden;
 `;
 
 const AspectInner = styled.div`
