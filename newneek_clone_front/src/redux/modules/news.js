@@ -31,6 +31,8 @@ const initialArticle = {
     id: 0,
 };
 
+
+
 // 글 가져오기
 const setArticleDB = () => {
     return function (dispatch, getState, { history }) {
@@ -54,13 +56,15 @@ const setArticleDB = () => {
     }
 }
 
+
+
 // reducer todo
 // 리듀서 (immer)불변성 유지 
 export default handleActions(
     {
         [SET_ARTICLE]: (state, action) =>
             produce(state, (draft) => {
-                // draft.list.push(...action.payload);
+                draft.article = action.payload.article;
         }),
     },
     initialState

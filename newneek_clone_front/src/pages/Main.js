@@ -5,6 +5,7 @@ import Main from "./Main";
 import CategoryNews from "./CategoryNews";
 import DetailNews from "./DetailNews";
 import Search from "./Search";
+import AllCardList from "./AllCardList";
 
 import { Aside, Banner, Card, Category, Economy, Footer, Header, Hire } from "../component";
 
@@ -26,13 +27,11 @@ function App() {
                 <Banner />
                 <Category />
                 <div>
-                    <Card />
-                    <Card />
-                    <Card />
+                    <AllCardList/>
                 </div>
-                <Button padding="14px 30px 14px">
+                {/* <Button padding="14px 30px 14px">
                     <Text size="15px">더보기</Text>
-                </Button>
+                </Button> */}
                 {/* <NewsHead /> */}
                 <Economy />
                 <Aside>퀴어 프렌들리한 팀을 위한 뉴닉 레인보우 가이드</Aside>
