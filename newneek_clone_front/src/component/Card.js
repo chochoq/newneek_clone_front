@@ -51,9 +51,10 @@ const CardDiv = styled.div`
     /* outline-color : 1px solid #161616; */
     color: #161616;
     border: 1px solid #161616;
-    border-width: 0 1px 1px 1px;
+    border-width: 1px 1px 1px 1px;
     cursor: pointer;
     display:inline-block;
+    margin:0px;
     &:hover {
         background-color: #fff;
         color: #161616;
