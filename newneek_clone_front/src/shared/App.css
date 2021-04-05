@@ -13,6 +13,37 @@ p {
     margin: 0px;
 }
 
+.pulse {
+    height: 60px;
+    background: #ebebeb;
+    color: #161616;
+    position: absolute;
+    left: -20%;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    font-size: large;
+}
+
+.marque {
+    overflow-x: hidden;
+}
+
+.marque p {
+    font-size: 24px;
+    color: #161616;
+    white-space: nowrap;
+    -webkit-animation-name: marquee;
+    animation-name: marquee;
+    -webkit-animation-timing-function: linear;
+    animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    animation-iteration-count: infinite;
+    -webkit-animation-duration: 4s;
+    animation-duration: 4s;
+    will-change: auto;
+}
+
 /*      Head wave     */
 
 .navbar-top:before {

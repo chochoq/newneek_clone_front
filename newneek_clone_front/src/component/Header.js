@@ -1,4 +1,5 @@
 import React from "react";
+
 import "../shared/App.css";
 import styled from "styled-components";
 import { Button } from "../elements";
@@ -6,6 +7,8 @@ import { Button } from "../elements";
 import logo from "../shared/logo.png";
 
 import { history } from "../redux/configureStore";
+import { Link, Switch, Route, HashRouter } from "react-router-dom";
+import Search from "../pages/Search";
 
 const Header = () => {
     return (
@@ -45,6 +48,16 @@ const Header = () => {
     );
 };
 
+export const Root = () => {
+    return (
+        <>
+            <HashRouter>
+                <Header />
+            </HashRouter>
+        </>
+    );
+};
+
 const NavBarTop = styled.div`
     height: 30px;
     background: #fff;
@@ -74,10 +87,9 @@ const NavBarLogo = styled.a`
     display: flex;
     align-items: center;
     justify-content: center;
-    left: 50%;
     width: 220px;
     cursor: pointer;
-    transform: translateX(-15%);
+    transform: translateX(-25%);
 `;
 
 const HeadButton = styled.a`
@@ -96,4 +108,4 @@ const ImojiButton = styled.span`
 
 Header.defaultProps = {};
 
-export default Header;
+export default Root;

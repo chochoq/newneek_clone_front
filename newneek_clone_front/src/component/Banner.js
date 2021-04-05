@@ -11,7 +11,9 @@ const Banner = () => {
                 <img src={banner} alt="intro" width="480px" />
             </IntroImageBody>
             <IntroHead>
-                <IntroHeadContent>특보!🗞️우리가 시간이 없지, 세상이 안 궁금하냐!</IntroHeadContent>
+                <IntroHeadContent>
+                    특보! 🗞️ 우리가 시간이 없지, 세상이 안 궁금하냐!
+                </IntroHeadContent>
             </IntroHead>
 
             <IntroBody>
@@ -26,7 +28,7 @@ const Banner = () => {
                     </Text>
                     <Input placeholder="이메일 주소" />
                     <Input placeholder="닉네임" />
-                    <Text>
+                    <Text margin="0 0 20px">
                         <Input is_check />
                         <strong>
                             <u>개인정보 수집·이용</u>
@@ -56,7 +58,7 @@ const IntroImageBody = styled.div`
 `;
 
 const IntroHead = styled.div`
-    padding: 1rem 0;
+    padding: 0.5rem 0;
     border-bottom: 1px solid #000;
     font-size: 42px;
     font-weight: 700;

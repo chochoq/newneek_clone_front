@@ -1,30 +1,50 @@
-// Main.js
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
 
-import Card from "../component/Card";
-import { Grid } from "../elements";
+// 페이지
+import Main from "./Main";
+import CategoryNews from "./CategoryNews";
+import DetailNews from "./DetailNews";
+import Search from "./Search";
 
-const Main = (props) => {
-    
+import { Aside, Banner, Card, Category, Economy, Footer, Header, Hire } from "../component";
+
+import { Button, Text } from "../elements/index";
+
+// 라우터
+import { BrowserRouter, Route } from "react-router-dom";
+import { ConnectedRouter } from "connected-react-router";
+
+import { history } from "../redux/configureStore";
+import NewsHead from "../component/NewsHead";
+
+function App() {
     return (
         <React.Fragment>
-            <Grid>
-                <Card>
-                    
-                </Card>
-            </Grid>
+            <BrowserRouter>
+                <Hire />
+                <Header />
+                <Banner />
+                <Category />
+                <div>
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+                <Button padding="14px 30px 14px">
+                    <Text size="15px">더보기</Text>
+                </Button>
+                {/* <NewsHead /> */}
+                <Economy />
+                <Aside>퀴어 프렌들리한 팀을 위한 뉴닉 레인보우 가이드</Aside>
+                <Aside>3월 8일에 업데이트된 뉴닉의 여성용어 가이드</Aside>
+                <Aside is_hover>
+                    오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이
+                    구독했어요!
+                </Aside>
+                <Footer />
+            </BrowserRouter>
         </React.Fragment>
-    )
+    );
 }
 
-Main.defaultProps = {
-    createdAt :"2021-02-27 10:00:00",
-    category : "카테고리",
-    title   : "제목",
-    image   : "이미지",
-    contents  : "내용",
-    id : 0,
-}
-
-export default Main;
+export default App;
