@@ -11,7 +11,7 @@ const rootReducer = combineReducers({
     news: News,
     router : connectRouter(history),
 });
-
+    
 const middlewares = [thunk.withExtraArgument({history:history})];
 
 // 지금이 어느 환경인 지 알려줘요. (개발환경, 프로덕션(배포)환경 ...)

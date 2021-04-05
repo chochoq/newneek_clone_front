@@ -1,6 +1,6 @@
 // Card.js
 import React from "react";
-import { Grid, Text, Image } from "../elements";
+import { Text, Image } from "../elements";
 
 import { history } from "../redux/configureStore";
 
@@ -27,7 +27,7 @@ const Card = (props) => {
         // 이미지없을 때 만들어야함, src={props.src}으로 변경해야 함, 온클릭시 기사로 넘어가기
         <CardDiv>
             <CardInner>
-                <Image shape="rectangle" src='https://newneek.co/static/media/episode1.ed37b877.png' />
+                <Image shape="rectangle" src='https://newneek-image.s3.ap-northeast-2.amazonaws.com/image/article/thumbnail/FNkJXU' />
                 <CardBody>
                     <Text padding="0.5em 0em" size="1.25rem" bold>{props.title}</Text>
                     <CardText>{props.contents}</CardText>

@@ -6,12 +6,12 @@ import { useSelector, useDispatch } from "react-redux";
 import axios from 'axios';
 import { ApiConfig } from '../shared/ApiConfig';
 
-import styled from "styled-components";
-
 import { history } from "../redux/configureStore";
 
 import Card from "../component/Card";
 import { Grid, Text, Button, Image } from "../elements";
+
+import styled from "styled-components";
 
 // mok api
 // import Data from '../CardDate';
@@ -25,6 +25,9 @@ import { Grid, Text, Button, Image } from "../elements";
 // id : 뉴스 게시글 프라이머리키 
 
 const AllCardList = (props) => {
+
+    const article_summary_list = useSelector((state) => state.news.list);
+    // console.log(article_summary_list);
 
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -40,7 +43,7 @@ const AllCardList = (props) => {
                 const response = await axios.get(
                     "https://606969750add490017340aba.mockapi.io/card/"
                 );
-                console.log(response.data);
+                // console.log(response.data);
                 setApi(response.data);
             } catch (e) {
                 setError(e);
@@ -62,6 +65,11 @@ const AllCardList = (props) => {
                     // history.push(`/postDetail/${p.id}`);
                     }}
             >
+                {article_summary_list.map((p, idx) => {
+                    return <Card key={p.id} {...p}/>
+                })}
+
+                {/* api리스트에서 받은고 */}
                 {api.map((AllCardList) => {
                     return <Card key={AllCardList.id} {...AllCardList} />;
                 })}
