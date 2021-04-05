@@ -2,7 +2,15 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import Card from "../component/Card";
+import AllCardList from "./AllCardList";
+import NewsHead from "../component/NewsHead";
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+import Economy from "../component/Economy";
+import Hire from "../component/Hire";
+import Aside from "../component/Aside";
+
+// 스타일
 import { Grid } from "../elements";
 
 const Main = (props) => {
@@ -10,9 +18,14 @@ const Main = (props) => {
     return (
         <React.Fragment>
             <Grid>
-                <Card>
-                    
-                </Card>
+                <Hire/>
+                <Header/>
+                {/* <NewsHead/> */}
+                <AllCardList />
+                <Economy />
+                <Aside/>
+                <Footer/>
+
             </Grid>
         </React.Fragment>
     )
