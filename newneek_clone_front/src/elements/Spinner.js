@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+// import SpinnerImg from "../shared/spinner.svg";
 
 // 빙글빙글 돌아가는 스피너
 // svg 이미지를 가지고 만들어요
@@ -18,7 +19,7 @@ const Spinner = (props) => {
 Spinner.defaultProps = {
   type: "inline", // inline, page
   is_dim: false,
-  size: 60,
+  size: 250,
 };
 
 const SpinnerWrap = styled.div`
