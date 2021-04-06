@@ -3,14 +3,10 @@ import React,{ useEffect, useReducer, useState }  from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { actionCreators as newsActions } from '../redux/modules/news';
 
-// API
-import axios from 'axios';
-import { ApiConfig } from '../shared/ApiConfig';
-
 import { history } from "../redux/configureStore";
 
 import Card from "../component/Card";
-import { Grid, Text, Button, Image } from "../elements";
+import { Button } from "../elements";
 
 import styled from "styled-components";
 
@@ -30,6 +26,7 @@ const AllCardList = (props) => {
     const dispatch = useDispatch();
     const article_summary_list = useSelector((state) => state.news.article_summary_list);
     const loading = useSelector((state) => state.news.loading);
+    const paging = useSelector((state) => state.news.paging);
 
         
     const { history } = props;
@@ -47,7 +44,6 @@ const AllCardList = (props) => {
     }, []);
     
     
-
     return (
         <React.Fragment> 
             {/* todo 온클릭이벤트시 상세페이지로이동 */}
@@ -60,7 +56,13 @@ const AllCardList = (props) => {
                 {article_summary_list.map((AllCardList) => {
                     return <Card key={AllCardList.id} {...AllCardList} />;
                 })}
-                <Button margin="2em 5em 2em 35%" width="30%">더보기</Button>
+                <Button
+                    margin="2em 5em 2em 35%"
+                    width="30%"
+                    onClick={() => {
+                        dispatch(newsActions.getArticleDB(paging.next))
+                    }}
+                >더보기</Button>
             </List>
         </React.Fragment>
     )
