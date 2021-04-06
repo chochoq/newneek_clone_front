@@ -6,7 +6,7 @@ import { actionCreators as newsActions } from '../redux/modules/news';
 import { history } from "../redux/configureStore";
 
 import Card from "../component/Card";
-import { Button } from "../elements";
+import { Button, Grid } from "../elements";
 
 import styled from "styled-components";
 
@@ -28,7 +28,6 @@ const AllCardList = (props) => {
     const loading = useSelector((state) => state.news.loading);
     const paging = useSelector((state) => state.news.paging);
 
-        
     const { history } = props;
 
 //       React.useEffect(() => {
@@ -39,10 +38,11 @@ const AllCardList = (props) => {
 //   }, []);
 
     // api 받아오기
-    useEffect(() => {
+    React.useEffect(() => {
+        if (article_summary_list.length<12) {
         dispatch(newsActions.getArticleDB());
+        }
     }, []);
-    
     
     return (
         <React.Fragment> 
@@ -53,8 +53,16 @@ const AllCardList = (props) => {
                     }}
             >
                 {/* api리스트에서 받은고 */}
-                {article_summary_list.map((AllCardList) => {
-                    return <Card key={AllCardList.id} {...AllCardList} />;
+                {article_summary_list.map((AllCardList, idx) => {
+                    return (
+                        
+                        <Card
+                            key={AllCardList.id} {...AllCardList}
+                            // todo 상세페이지로 넘어가기
+                            onClick={() => {
+                                // history.push(`/postDetail/${AllCardList.id}`);
+                            }}/>
+                    )
                 })}
                 <Button
                     margin="2em 5em 2em 35%"
@@ -72,7 +80,6 @@ const List = styled.div`
     margin:auto;
     padding:0 18%;
 `;
-    
 
 AllCardList.defaultProps = {
     createdAt :"2021-02-27 10:00:00",

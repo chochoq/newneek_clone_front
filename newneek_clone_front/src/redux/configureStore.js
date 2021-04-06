@@ -3,15 +3,20 @@ import thunk from "redux-thunk";
 import { createBrowserHistory } from "history";
 import { connectRouter } from "connected-react-router";
 
+// 리듀서
 import News from "./modules/news";
 
+// 브라우저 히스토리를 만듭니다.
 export const history = createBrowserHistory();
 
+// 가져온 리듀서를 루트 리듀서로 묶어줍니다.
 const rootReducer = combineReducers({
     news: News,
     router : connectRouter(history),
 });
     
+// 사용할 미들웨어를 여기에 넣어줍니다.
+// thunk에는 history를 넣어줄거예요. (중간 다리 역할을 하는 미들웨어에서도 페이지 이동을 할 수 있게 하려고!)
 const middlewares = [thunk.withExtraArgument({history:history})];
 
 // 지금이 어느 환경인 지 알려줘요. (개발환경, 프로덕션(배포)환경 ...)
@@ -23,6 +28,7 @@ if (env === "development") {
     middlewares.push(logger);
 }
 
+// Chrome Extension
 // redux devTools 설정
 const composeEnhancers =
     typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -31,12 +37,8 @@ const composeEnhancers =
     })
     : compose;
 
-
 // 미들웨어 묶어주기
-const enhancer = composeEnhancers(
-    applyMiddleware(...middlewares)
-);
-
+const enhancer = composeEnhancers(applyMiddleware(...middlewares));
 
 // 미들웨어와 루트리듀서를 묶어서 스토어를 만든다
 let store = (initialStore) => createStore(rootReducer, enhancer);

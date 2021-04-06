@@ -24,6 +24,7 @@ const Card = (props) => {
     return (
         // todo
         // 이미지없을 때 만들어야함, src={props.src}으로 변경해야 함, 온클릭시 기사로 넘어가기
+
         <Link
             onClick={() => {
                 history.push("/post");
@@ -50,6 +51,7 @@ const Card = (props) => {
         </Link>
     );
 };
+
 // todo
 //  카드에 top 부분에 마진인지 뭔지가 들어가서 카드가 띄어져있음. 해결요망
 const CardDiv = styled.div`
