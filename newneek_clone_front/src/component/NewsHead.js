@@ -67,6 +67,7 @@ const Center = styled.div`
     padding: 40px 40px 60px;
     margin: 0 0 56px;
     border-bottom: 1px solid #161616;
+    border-top: 1px solid #161616;
 `;
 
 NewsHead.defaultProps = {

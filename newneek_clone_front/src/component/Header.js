@@ -65,7 +65,6 @@ const NavBarTop = styled.div`
 `;
 
 const NavBar = styled.nav`
-    border-bottom: 1px solid #161616;
     position: relative;
     z-index: 4;
 `;

@@ -192,8 +192,8 @@ export const Root = () => {
 const CategoryBody = styled.div`
     display: flex;
     justify-content: center;
-    border-top: 1px solid #161616;
     border-bottom: 1px solid #161616;
+    border-top: 1px solid #161616;
     background: #fff;
     box-sizing: border-box;
     overflow: hidden;

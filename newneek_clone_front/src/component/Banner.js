@@ -46,6 +46,7 @@ const Banner = () => {
 
 const Intro = styled.div`
     position: relative;
+    border-top: 1px solid #161616;
 `;
 
 const IntroImageBody = styled.div`
@@ -55,6 +56,7 @@ const IntroImageBody = styled.div`
     width: 100%;
     max-width: 480px;
     margin-left: 60px;
+    z-index: 0;
 `;
 
 const IntroHead = styled.div`
@@ -75,7 +77,7 @@ const IntroHeadContent = styled.div`
 const IntroBody = styled.div`
     padding: 2rem 0 3rem;
     background: #fb7800;
-    box-sizing: border-bos;
+    box-sizing: border-box;
 `;
 
 const IntroInner = styled.div`

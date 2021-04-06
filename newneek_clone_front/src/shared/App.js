@@ -1,30 +1,37 @@
-import React from 'react';
+import React from "react";
 
 // 페이지
-import Main from '../pages/Main';
-import CategoryNews from '../pages/CategoryNews';
-import DetailNews from '../pages/DetailNews';
-import Search from '../pages/Search';
+import Main from "../pages/Main";
+import CategoryNews from "../pages/CategoryNews";
+import DetailNews from "../pages/DetailNews";
+import SearchNews from "../pages/SearchNews";
+import Search from "../pages/Search";
 
+import { Aside, Banner, Card, Category, Economy, Footer, Header, Hire } from "../component";
+
+import { Button, Text } from "../elements/index";
 
 // 라우터
 import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";
 
 import { history } from "../redux/configureStore";
-
-
-
+import NewsHead from "../component/NewsHead";
 
 function App() {
-  return (
-    <React.Fragment>
-      <BrowserRouter>
-        <Route path="/" exact component={Main}/>
-      </BrowserRouter>
-    </React.Fragment>
-  );
+    return (
+        <React.Fragment>
+            <BrowserRouter>
+                <ConnectedRouter history={history}>
+                    <Route path="/" exact component={Main} />
+                    <Route path="/category" exact component={CategoryNews} />
+                    <Route path="/search/post" exact component={SearchNews} />
+                    <Route path="/post" exact component={DetailNews} />
+                    <Route path="/search" exact component={Search} />
+                </ConnectedRouter>
+            </BrowserRouter>
+        </React.Fragment>
+    );
 }
 
 export default App;
-
