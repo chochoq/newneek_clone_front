@@ -15,8 +15,6 @@ const SET_LOADING = "SET_LOADING";
 const UPDATE_CURRENT = "UPDATE_CURRENT";
 const UPDATE_START_END = "UPDATE_START_END";
 
-
-
 // 액션생성함수
 const setArticle = createAction(SET_ARTICLE, (article_summary_list) => ({ article_summary_list }));
 const setLoading = createAction(SET_LOADING, (loading) => ({ loading }));
@@ -40,7 +38,6 @@ const updateCurrentPage = (page) => {
         }));
         // 서버로부터 리스트 가져오기
         dispatch(getArticleDB());
-
     }
 };
 // 처음, 끝 페이지
@@ -49,7 +46,6 @@ const updateStartEndPage = (start, end) => {
         dispatch(updateStartEnd({
         start: start+12,
         end: end+12,
-        
         }))
     }
 }
@@ -65,7 +61,7 @@ const getArticleDB = (start=null, size=12) => {
             return;
         }
 
-        dispatch(setLoading(true));
+        setLoading(true);
         
         axios.get(
             ApiConfig.api

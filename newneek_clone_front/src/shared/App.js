@@ -7,10 +7,6 @@ import DetailNews from "../pages/DetailNews";
 import SearchNews from "../pages/SearchNews";
 import Search from "../pages/Search";
 
-import { Aside, Banner, Card, Category, Economy, Footer, Header, Hire } from "../component";
-
-import { Button, Text } from "../elements/index";
-
 // 라우터
 import { BrowserRouter, Route } from "react-router-dom";
 import { ConnectedRouter } from "connected-react-router";

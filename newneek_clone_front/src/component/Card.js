@@ -38,7 +38,6 @@ const Card = (props) => {
                 </CardBody>
             </CardInner>
         </CardDiv>
-
     )
 }
 // todo
