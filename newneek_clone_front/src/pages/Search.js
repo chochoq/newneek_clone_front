@@ -1,17 +1,50 @@
-import React from "react";
+import React, { useEffect, useReducer, useState } from "react";
 import "../shared/App.css";
 import styled from "styled-components";
+import _ from "lodash"; // lodash 부르기
 
-import { NavLink, Switch, Route, HashRouter } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { actionCreators as newsActions } from "../redux/modules/news";
+
+import { NavLink, Switch, Route, HashRouter, withRouter } from "react-router-dom";
 
 import { Button, Input, Text } from "../elements/index";
 
 const Search = () => {
+    // const debounce = _.debounce((k) => console.log("디바운스! :::", k), 1000);
+    // const keyPress = React.useCallback(debounce, []);
+
+    // const onChange = (e) => {
+    //     keyPress(e.target.value);
+    // };
+
+    const dispatch = useDispatch();
+    const [search_text, setSearchText] = React.useState("");
+    const write = () => {
+        if (search_text === "") {
+            window.alert("검색어를 입력해주세요");
+            return;
+        }
+        console.log(search_text);
+        dispatch(newsActions.getArticleDB(search_text));
+        setSearchText("");
+    };
+    console.log(search_text);
+
     return (
         <SearchBody>
-            <Input is_search placeholder="고슴아 이게 궁금해. (인물, 이슈)" />
+            <Input
+                type="text"
+                is_search
+                placeholder="고슴아 이게 궁금해. (인물, 이슈)"
+                value={search_text}
+                _onChange={(e) => {
+                    setSearchText(e.target.value);
+                }}
+                onSubmit={write}
+            />
             <SearchOption>
-                <Text bold margin=".8rem 0" size="1.2rem">
+                <Text bold margin=".8rem 0" size="1.1rem">
                     고슴이 추천 키워드
                 </Text>
                 <A>코로나19 백신</A>
@@ -28,7 +61,13 @@ const SearchBody = styled.div`
     max-width: 640px;
     margin: 0 auto;
     padding: 1rem 5%;
-    display: block;
+    box-sizing: border-box;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 6;
 `;
 
 const SearchOption = styled.div`

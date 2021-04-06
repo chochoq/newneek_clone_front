@@ -7,10 +7,9 @@ import { Button } from "../elements";
 import logo from "../shared/logo.png";
 
 import { history } from "../redux/configureStore";
-import { Link, Switch, Route, HashRouter } from "react-router-dom";
-import Search from "../pages/Search";
+import { Link, withRouter } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
     return (
         <>
             <NavBarTop className="navbar-top"></NavBarTop>
@@ -24,7 +23,7 @@ const Header = () => {
                     </NavBarMenu>
                     <NavBarLogo
                         onClick={() => {
-                            history.push("/");
+                            history.push("/#");
                         }}
                     >
                         <img src={logo} alt="logo" width="220px" />
@@ -32,7 +31,7 @@ const Header = () => {
                     <NavBarMenu>
                         <Button
                             is_header
-                            onClick={() => {
+                            _onClick={() => {
                                 history.push("/search");
                             }}
                         >
@@ -44,16 +43,6 @@ const Header = () => {
                     </NavBarMenu>
                 </NavBarInner>
             </NavBar>
-        </>
-    );
-};
-
-export const Root = () => {
-    return (
-        <>
-            <HashRouter>
-                <Header />
-            </HashRouter>
         </>
     );
 };
@@ -82,7 +71,7 @@ const NavBarMenu = styled.div`
     display: flex;
 `;
 
-const NavBarLogo = styled.a`
+const NavBarLogo = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
@@ -107,4 +96,4 @@ const ImojiButton = styled.span`
 
 Header.defaultProps = {};
 
-export default Root;
+export default withRouter(Header);

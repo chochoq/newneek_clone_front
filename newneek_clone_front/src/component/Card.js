@@ -3,11 +3,11 @@ import React from "react";
 import { Text, Image } from "../elements";
 
 import { history } from "../redux/configureStore";
+import { Link } from "react-router-dom";
 
 // 스타일
 import styled from "styled-components";
 import "../shared/App.css";
-
 
 // mok api
 // import Data from '../CardDate';
@@ -18,29 +18,38 @@ import "../shared/App.css";
 // title   : 뉴스 제목
 // image   : 뉴스 이미지
 // contents  : 뉴스 내용
-// id : 뉴스 게시글 프라이머리키 
+// id : 뉴스 게시글 프라이머리키
 
 const Card = (props) => {
-
     return (
-        // todo 
+        // todo
         // 이미지없을 때 만들어야함, src={props.src}으로 변경해야 함, 온클릭시 기사로 넘어가기
-        <CardDiv>
-            <CardInner>
-                <Image shape="rectangle" src='https://newneek-image.s3.ap-northeast-2.amazonaws.com/image/article/thumbnail/FNkJXU' />
-                <CardBody>
-                    <Text padding="0.5em 0em" size="1.25rem" bold>{props.title}</Text>
-                    <CardText>{props.contents}</CardText>
-                    <CardSmall>
-                        <CardDate>{props.createdAt}</CardDate>
-                        <CardCategory>{props.category}</CardCategory>
-                    </CardSmall>
-                </CardBody>
-            </CardInner>
-        </CardDiv>
-
-    )
-}
+        <Link
+            onClick={() => {
+                history.push("/post");
+            }}
+        >
+            <CardDiv>
+                <CardInner>
+                    <Image
+                        shape="rectangle"
+                        src="https://newneek-image.s3.ap-northeast-2.amazonaws.com/image/article/thumbnail/FNkJXU"
+                    />
+                    <CardBody>
+                        <Text padding="0.5em 0em" size="1.25rem" bold>
+                            {props.title}
+                        </Text>
+                        <CardText>{props.contents}</CardText>
+                        <CardSmall>
+                            <CardDate>{props.createdAt}</CardDate>
+                            <CardCategory>{props.category}</CardCategory>
+                        </CardSmall>
+                    </CardBody>
+                </CardInner>
+            </CardDiv>
+        </Link>
+    );
+};
 // todo
 //  카드에 top 부분에 마진인지 뭔지가 들어가서 카드가 띄어져있음. 해결요망
 const CardDiv = styled.div`
@@ -53,8 +62,8 @@ const CardDiv = styled.div`
     border: 1px solid #161616;
 
     cursor: pointer;
-    display:inline-block;
-    margin:0px;
+    display: inline-block;
+    margin: 0px;
     /* grid-template-columns: 1fr 1fr 1fr; */
 
     /* display: grid; */
@@ -75,7 +84,7 @@ const CardInner = styled.div`
 const CardBody = styled.div`
     padding: 0rem 0.75rem;
     box-sizing: border-box;
-    font-weight:normal;
+    font-weight: normal;
 `;
 
 const CardText = styled.div`
@@ -92,7 +101,6 @@ const CardText = styled.div`
 
 const CardSmall = styled.div`
     font-size: 0.2rem;
-    
 `;
 
 const CardDate = styled.div`
@@ -101,19 +109,18 @@ const CardDate = styled.div`
 `;
 
 const CardCategory = styled.div`
-    left:5.3rem;
+    left: 5.3rem;
     bottom: 1.5rem;
     position: absolute;
 `;
 
-
 Card.defaultProps = {
-    createdAt :"2021-02-27 10:00:00",
-    category : "카테고리",
-    title   : "제목",
-    image   : "https://newneek.co/static/media/episode1.ed37b877.png",
-    contents  : "내용",
-    id : 0,
-}
+    createdAt: "2021-02-27 10:00:00",
+    category: "카테고리",
+    title: "제목",
+    image: "https://newneek.co/static/media/episode1.ed37b877.png",
+    contents: "내용",
+    id: 0,
+};
 
 export default Card;

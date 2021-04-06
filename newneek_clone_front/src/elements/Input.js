@@ -38,7 +38,7 @@ const Input = (props) => {
 
 Input.defaultProps = {
     placeholder: "텍스트를 입력해주세요.",
-    // type: "text",
+    type: "text",
     onSubmit: () => {},
     _onChange: () => {},
 };
@@ -58,7 +58,7 @@ const SearchStyle = styled.input`
     border: 1px solid #161616;
     background-color: #fff;
     height: 52px;
-    width: 530px;
+    width: 100%;
     padding: 10px 40px 11px 1.5rem;
     box-sizing: border-box;
     display: block;
