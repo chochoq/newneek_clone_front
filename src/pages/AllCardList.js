@@ -44,11 +44,21 @@ const AllCardList = (props) => {
     return (
         <React.Fragment>
             <Body>
-                <Card />
+                {article_summary_list.map((AllCardList) => {
+                    return (
+                        <Card
+                            key={AllCardList.id}
+                            {...AllCardList}
+                            // todo 온클릭시 이동
+                        />
+                    );
+                })}
+
                 <Button
                     margin="2em 5em 2em 35%"
                     width="30%"
-                    onClick={() => {
+                    _onClick={() => {
+                        console.log("온클릭이벤트")
                         dispatch(newsActions.getArticleDB(paging.next));
                     }}
                 >
