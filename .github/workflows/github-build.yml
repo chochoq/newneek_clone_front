@@ -1,0 +1,28 @@
+name: React build 
+on: 
+  push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Checkout source code.   # 레포지토리 체크아웃
+        uses: actions/checkout@master
+
+      - name: Cache node modules      # node modules 캐싱
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-build-
+            ${{ runner.OS }}-
+            
+      - name: React Deploy to S3
+        # You may pin to the exact commit or the version.
+        # uses: jeanlescure/react-deploy-to-s3-action@5c5cffb04cf10e8ac735b5182be17915d8d5f5e0
+        uses: jeanlescure/react-deploy-to-s3-action@v1.1.0
+
+          
