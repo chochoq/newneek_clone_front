@@ -48,7 +48,7 @@ const AllCardList = (props) => {
                 <Button
                     margin="2em 5em 2em 35%"
                     width="30%"
-                    onClick={() => {
+                    _onClick={() => {
                         dispatch(newsActions.getArticleDB(paging.next));
                     }}
                 >

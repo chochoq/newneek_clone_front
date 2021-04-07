@@ -24,20 +24,25 @@ import { initial } from "lodash";
 // contents  : 뉴스 내용
 // id : 뉴스 게시글 프라이머리키
 
-const Card = (props) => {
+const Card = () => {
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const [page, setPage] = useState(0);
+
     useEffect(() => {
         const fetchUsers = async (param) => {
+
             try {
                 setError(null);
                 setApi(null);
-                setApi(null);
                 setLoading(true);
-                const response = await axios.get("http://13.125.15.255:8080/api/articles");
+
+                const response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
+                setPage(page+1);
                 console.log(response.data, "data");
+                console.log(response.data.page)
                 setApi(response.data.articleSummaryList);
             } catch (e) {
                 setError(e);
@@ -46,7 +51,7 @@ const Card = (props) => {
         };
         fetchUsers();
     }, []);
-    console.log(api, "api");
+    // console.log(api, "api");
     if (!api) return null;
     if (error) return <div>error</div>;
     if (loading) return <div>spinner..</div>;
@@ -60,8 +65,27 @@ const Card = (props) => {
                     }}
                 >
                     <CardDiv>
+                        {article.image === ""
+                            ?
                         <CardInner>
-                            <Image shape="rectangle" src={article.image} />
+                            <CardBodyNo>
+                                <span class="card-emoji">💰</span>
+                                <Text padding="0.5em 0em" size="1.25rem" bold>
+                                    {article.title}
+                                </Text>
+                                <Text >{article.contents}</Text>
+                            </CardBodyNo>
+                            <CardBody>
+                                <CardSmall>
+                                    <CardDate>{article.createdAt}</CardDate>
+                                    <CardCategory>{article.categoryName}</CardCategory>
+                                </CardSmall>
+                            </CardBody>
+                        </CardInner>
+                    :   <CardInner>
+                            <card_thumbnail>
+                                <Image shape="rectangle" src={article.image} />
+                            </card_thumbnail>
                             <CardBody>
                                 <Text padding="0.5em 0em" size="1.25rem" bold>
                                     {article.title}
@@ -73,6 +97,7 @@ const Card = (props) => {
                                 </CardSmall>
                             </CardBody>
                         </CardInner>
+                        }
                     </CardDiv>
                 </Link>,
             ])}
@@ -105,10 +130,26 @@ const CardDiv = styled.div`
     }
 `;
 
+const card_thumbnail = styled.div`
+    width: auto; 
+    height: auto;
+    border-bottom: 1px solid #161616;
+
+    overflow: hidden;
+
+`
 const CardInner = styled.div`
     width: 100%;
     height: 100%;
     box-sizing: border-box;
+`;
+
+const CardBodyNo = styled.div`
+    padding: 0rem 0.75rem;
+    height: 300px;
+    box-sizing: border-box;
+    position: relative;
+    display: block;
 `;
 
 const CardBody = styled.div`
