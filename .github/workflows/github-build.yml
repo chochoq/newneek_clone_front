@@ -34,4 +34,4 @@ jobs:
           aws s3 cp \
             --recursive \
             --region ap-northeast-2 \
-            build https://github.com/chochoq/newneek_clone_front # 자신의 레포지토리로 변경해주세요.
+            build s3://newneek # 자신의 레포지토리로 변경해주세요.
