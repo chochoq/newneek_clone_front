@@ -1,4 +1,4 @@
-name: React build 
+name: React build
 on: 
   push:                               # master Branch에서 push 이벤트가 일어났을 때만 실행
     branches:
@@ -19,10 +19,19 @@ jobs:
           restore-keys: |
             ${{ runner.OS }}-build-
             ${{ runner.OS }}-
-            
-      - name: React Deploy to S3
-        # You may pin to the exact commit or the version.
-        # uses: jeanlescure/react-deploy-to-s3-action@5c5cffb04cf10e8ac735b5182be17915d8d5f5e0
-        uses: jeanlescure/react-deploy-to-s3-action@v1.1.0
 
-          
+      - name: Install Dependencies    # 의존 파일 설치
+        run: npm install
+
+      - name: Build                   # React Build
+        run: npm run build
+
+      - name: Deploy                  # S3에 배포하기
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        run: |
+          aws s3 cp \
+            --recursive \
+            --region ap-northeast-2 \
+            build https://github.com/chochoq/newneek_clone_front # 자신의 레포지토리로 변경해주세요.
