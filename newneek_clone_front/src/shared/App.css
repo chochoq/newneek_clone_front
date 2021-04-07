@@ -12,7 +12,7 @@ body {
 /*    전역스타일    */
 p {
     margin: 0px;
-    word-break: keep-all;
+    word-break: break-all;
 }
 
 h3 {
@@ -42,6 +42,11 @@ li::before {
 em {
     font-style: normal;
     color: rgb(153, 153, 153);
+}
+
+a {
+    color: #161616;
+    text-decoration: underline;
 }
 
 /*    aside    */
@@ -109,7 +114,7 @@ em {
 /*     category   */
 
 .header {
-    display: flex;
+    display: block;
     align-items: center;
     justify-content: center;
     height: 70px;

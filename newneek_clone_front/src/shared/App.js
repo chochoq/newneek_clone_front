@@ -20,9 +20,9 @@ function App() {
             <BrowserRouter>
                 <ConnectedRouter history={history}>
                     <Route path="/" exact component={Main} />
-                    <Route path="/category" exact component={CategoryNews} />
+                    <Route path="/:category?" exact component={CategoryNews} />
                     <Route path="/search/post" exact component={SearchNews} />
-                    <Route path="/post" exact component={DetailNews} />
+                    <Route path="/post/:id" exact component={DetailNews} />
                     <Route path="/search" exact component={Search} />
                 </ConnectedRouter>
             </BrowserRouter>
