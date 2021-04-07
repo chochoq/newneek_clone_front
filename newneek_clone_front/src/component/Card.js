@@ -44,6 +44,7 @@ const Card = () => {
                 console.log(response.data, "data");
                 console.log(response.data.page)
                 setApi(response.data.articleSummaryList);
+                
             } catch (e) {
                 setError(e);
             }
@@ -65,15 +66,16 @@ const Card = () => {
                     }}
                 >
                     <CardDiv>
+                        {/* 이미지 없음 */}
                         {article.image === ""
                             ?
-                        <CardInner>
+                        <CardInnerNo>
                             <CardBodyNo>
-                                <span class="card-emoji">💰</span>
+                                <span class="card-emoji">🌐</span>
                                 <Text padding="0.5em 0em" size="1.25rem" bold>
                                     {article.title}
                                 </Text>
-                                <Text >{article.contents}</Text>
+                                    <CardText>{article.contents}</CardText>
                             </CardBodyNo>
                             <CardBody>
                                 <CardSmall>
@@ -81,11 +83,11 @@ const Card = () => {
                                     <CardCategory>{article.categoryName}</CardCategory>
                                 </CardSmall>
                             </CardBody>
-                        </CardInner>
-                    :   <CardInner>
-                            <card_thumbnail>
-                                <Image shape="rectangle" src={article.image} />
-                            </card_thumbnail>
+                        </CardInnerNo>
+                        
+                        //이미지있음
+                    :   <CardInner> 
+                            <Image shape="rectangle" src={article.image} />
                             <CardBody>
                                 <Text padding="0.5em 0em" size="1.25rem" bold>
                                     {article.title}
@@ -108,21 +110,12 @@ const Card = () => {
 // todo
 //  카드에 top 부분에 마진인지 뭔지가 들어가서 카드가 띄어져있음. 해결요망
 const CardDiv = styled.div`
-    box-sizing: border-box;
-    grid-auto-rows: auto;
+    flex-wrap: wrap;
     position: relative;
-    width: 25%;
-    /* outline-color : 1px solid #161616; */
-    color: #161616;
-    border: 1px solid #161616;
-
-    cursor: pointer;
-    display: inline-block;
-    margin: 0px;
-    /* grid-template-columns: 1fr 1fr 1fr; */
-
-    /* display: grid; */
-
+    border-color: #161616;
+    border-style: solid;
+    border-width: 1px;
+    display: flex;
     &:hover {
         background-color: #fff;
         color: #161616;
@@ -131,31 +124,36 @@ const CardDiv = styled.div`
 `;
 
 const card_thumbnail = styled.div`
-    width: auto; 
-    height: auto;
-    border-bottom: 1px solid #161616;
-
-    overflow: hidden;
-
+    
+    background: #ebebeb;
+    box-sizing: border-box;
+    position: relative;
 `
 const CardInner = styled.div`
     width: 100%;
+`;
+
+const CardInnerNo = styled.div`
+    width: 100%;
     height: 100%;
     box-sizing: border-box;
+    grid-template-columns: 1fr 1fr 1fr;
 `;
 
 const CardBodyNo = styled.div`
     padding: 0rem 0.75rem;
-    height: 300px;
+    height: 367.83px;
     box-sizing: border-box;
     position: relative;
     display: block;
+    /* display: grid; */
 `;
 
 const CardBody = styled.div`
     padding: 0rem 0.75rem;
     box-sizing: border-box;
     font-weight: normal;
+
 `;
 
 const CardText = styled.div`
