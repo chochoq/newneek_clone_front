@@ -51,7 +51,8 @@ const AllCardList = (props) => {
                         <Card
                             key={AllCardList.id}
                             {...AllCardList}
-                            onClick={() => {
+                            _onClick={() => {
+                                console.log("온클릭이벤트")
                                 history.push(`/post/${AllCardList.id}`);
                             }}
                         />
