@@ -43,8 +43,6 @@ const AllCardList = (props) => {
 
     return (
         <React.Fragment>
-            {/* todo 온클릭이벤트시 상세페이지로이동 */}
-            {/* api리스트에서 받은고 */}
             <Body>
                 {article_summary_list.map((AllCardList) => {
                     return (
@@ -55,6 +53,7 @@ const AllCardList = (props) => {
                         />
                     );
                 })}
+
                 <Button
                     margin="2em 5em 2em 35%"
                     width="30%"

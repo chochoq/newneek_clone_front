@@ -10,6 +10,8 @@ import styled from "styled-components";
 import "../shared/App.css";
 
 import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { initial } from "lodash";
 
 // mok api
 // import Data from '../CardDate';
@@ -24,18 +26,20 @@ import axios from "axios";
 
 const Card = (props) => {
     const [api, setApi] = useState(null);
+    const [rel, setRel] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchUsers = async (param) => {
             try {
                 setError(null);
                 setApi(null);
+                setApi(null);
                 setLoading(true);
-                const response = await axios.get;
-                "https://6068a5d60add49001734047c.mockapi.io/relative"();
-                setApi(response.data);
+                const response = await axios.get("http://13.125.15.255:8080/api/articles");
+                console.log(response.data, "data");
+                setApi(response.data.articleSummaryList);
             } catch (e) {
                 setError(e);
             }
@@ -43,37 +47,36 @@ const Card = (props) => {
         };
         fetchUsers();
     }, []);
+    console.log(api, "api");
     if (!api) return null;
     if (error) return <div>error</div>;
     if (loading) return <div>spinner..</div>;
 
     return (
         <>
-            {api.map((article) => {
-                return (
-                    <Link
-                        onClick={() => {
-                            history.push(`/post/${article.id}`);
-                        }}
-                    >
-                        <CardDiv>
-                            <CardInner>
-                                <Image shape="rectangle" src="${article.image}" />
-                                <CardBody>
-                                    <Text padding="0.5em 0em" size="1.25rem" bold>
-                                        {article.title}
-                                    </Text>
-                                    <CardText>{article.contents}</CardText>
-                                    <CardSmall>
-                                        <CardDate>{article.createdAt}</CardDate>
-                                        <CardCategory>{article.category}</CardCategory>
-                                    </CardSmall>
-                                </CardBody>
-                            </CardInner>
-                        </CardDiv>
-                    </Link>
-                );
-            })}
+            {api.map((article) => [
+                <Link
+                    onClick={() => {
+                        history.push(`/post/${article.id}`);
+                    }}
+                >
+                    <CardDiv>
+                        <CardInner>
+                            <Image shape="rectangle" src={article.image} />
+                            <CardBody>
+                                <Text padding="0.5em 0em" size="1.25rem" bold>
+                                    {article.title}
+                                </Text>
+                                <CardText>{api.contents}</CardText>
+                                <CardSmall>
+                                    <CardDate>{article.createdAt}</CardDate>
+                                    <CardCategory>{article.categoryName}</CardCategory>
+                                </CardSmall>
+                            </CardBody>
+                        </CardInner>
+                    </CardDiv>
+                </Link>,
+            ])}
         </>
     );
 };
