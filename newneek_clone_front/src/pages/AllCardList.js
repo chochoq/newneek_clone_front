@@ -54,6 +54,7 @@ const AllCardList = (props) => {
             >
                 {/* api리스트에서 받은고 */}
                 {article_summary_list.map((AllCardList, idx) => {
+                    // console.log(AllCardList);
                     return (
                         
                         <Card
@@ -67,7 +68,8 @@ const AllCardList = (props) => {
                 <Button
                     margin="2em 5em 2em 35%"
                     width="30%"
-                    onClick={() => {
+                    _onClick={() => {
+                        
                         dispatch(newsActions.getArticleDB(paging.next))
                     }}
                 >더보기</Button>
