@@ -1,5 +1,5 @@
 // Card.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, Image } from "../elements";
 
 import { history } from "../redux/configureStore";
@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 // 스타일
 import styled from "styled-components";
 import "../shared/App.css";
+
+import axios from "axios";
 
 // mok api
 // import Data from '../CardDate';
@@ -21,34 +23,58 @@ import "../shared/App.css";
 // id : 뉴스 게시글 프라이머리키
 
 const Card = (props) => {
-    return (
-        // todo
-        // 이미지없을 때 만들어야함, src={props.src}으로 변경해야 함, 온클릭시 기사로 넘어가기
+    const [api, setApi] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-        <Link
-            onClick={() => {
-                history.push("/post");
-            }}
-        >
-            <CardDiv>
-                <CardInner>
-                    <Image
-                        shape="rectangle"
-                        src="https://newneek-image.s3.ap-northeast-2.amazonaws.com/image/article/thumbnail/FNkJXU"
-                    />
-                    <CardBody>
-                        <Text padding="0.5em 0em" size="1.25rem" bold>
-                            {props.title}
-                        </Text>
-                        <CardText>{props.contents}</CardText>
-                        <CardSmall>
-                            <CardDate>{props.createdAt}</CardDate>
-                            <CardCategory>{props.category}</CardCategory>
-                        </CardSmall>
-                    </CardBody>
-                </CardInner>
-            </CardDiv>
-        </Link>
+    useEffect(() => {
+        const fetchUsers = async () => {
+            try {
+                setError(null);
+                setApi(null);
+                setLoading(true);
+                const response = await axios.get;
+                "https://6068a5d60add49001734047c.mockapi.io/relative"();
+                setApi(response.data);
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+        };
+        fetchUsers();
+    }, []);
+    if (!api) return null;
+    if (error) return <div>error</div>;
+    if (loading) return <div>spinner..</div>;
+
+    return (
+        <>
+            {api.map((article) => {
+                return (
+                    <Link
+                        onClick={() => {
+                            history.push(`/post/${article.id}`);
+                        }}
+                    >
+                        <CardDiv>
+                            <CardInner>
+                                <Image shape="rectangle" src="${article.image}" />
+                                <CardBody>
+                                    <Text padding="0.5em 0em" size="1.25rem" bold>
+                                        {article.title}
+                                    </Text>
+                                    <CardText>{article.contents}</CardText>
+                                    <CardSmall>
+                                        <CardDate>{article.createdAt}</CardDate>
+                                        <CardCategory>{article.category}</CardCategory>
+                                    </CardSmall>
+                                </CardBody>
+                            </CardInner>
+                        </CardDiv>
+                    </Link>
+                );
+            })}
+        </>
     );
 };
 

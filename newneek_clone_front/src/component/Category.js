@@ -9,25 +9,65 @@ import { NavLink, Switch, Route, HashRouter } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
 const Category = () => {
-    // const [api, setApi] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(null);
-
+    const [api, setApi] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
     useEffect(() => {
-        // const fetchUsers = async () => {
-        //     try {
-        //         setApi(null);
-        //         const response = await axios.get(
-        //             "https://6068a5d60add49001734047c.mockapi.io/article"
-        //         );
-        //         setApi(response.data);
-        //     } catch (e) {
-        //         setError(e);
-        //     }
-        //     setLoading(false);
-        // };
-        // fetchUsers();
+        const fetchUsers = async () => {
+            try {
+                setError(null);
+                setApi(null);
+                setLoading(true);
+                const response = await axios.get(
+                    "https://6068a5d60add49001734047c.mockapi.io/category"
+                );
+                setApi(response.data);
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+        };
+        fetchUsers();
+        console.log(api);
+    }, []);
 
+    if (!api) return null;
+    if (error) return <div>error</div>;
+    if (loading) return <div>spinner..</div>;
+
+    return (
+        <div>
+            <CategoryBody>
+                <CategoryInner>
+                    <NavLink
+                        to="/"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px"> 전체</Text>
+                    </NavLink>
+                    {api &&
+                        api.map((e) => (
+                            <NavLink
+                                key={e.categoryName}
+                                exact={e.categoryName === "all"}
+                                to={e.categoryName === "all" ? "/" : `${e.categoryName}`}
+                                style={{ textDecoration: "none" }}
+                                component={A}
+                                activeClassName="is_active"
+                            >
+                                <Text size="16px">{e.categoryName}</Text>
+                            </NavLink>
+                        ))}
+                </CategoryInner>
+            </CategoryBody>
+        </div>
+    );
+};
+
+const Root = () => {
+    useEffect(() => {
         const header = document.getElementById("myHeader");
         const sticky = header.offsetTop;
         const scrollCallBack = window.addEventListener("scroll", () => {
@@ -41,150 +81,11 @@ const Category = () => {
             window.removeEventListener("scroll", scrollCallBack);
         };
     }, []);
-
-    // if (!api) return null;
-    // if (error) return <div>error</div>;
-    // if (loading) return <div>spinner..</div>;
-
-    return (
-        <div>
-            <header id="myHeader" className="header">
-                <CategoryBody>
-                    <CategoryInner>
-                        <NavLink
-                            to="/"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">전체</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=5분뉴닉"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">🖐️ 5분뉴닉</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=국내정치"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">국내정치</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=국제외교"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">국제·외교</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=경제"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">경제</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=노동일"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">노동·일</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=인권"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">인권</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=테크"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">테크</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=문화"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">문화</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=환경에너지"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">환경·에너지</Text>
-                        </NavLink>
-                        <NavLink
-                            to="/category=코로나19"
-                            style={{ textDecoration: "none" }}
-                            component={A}
-                            className="normal"
-                            activeClassName="is_active"
-                            exact
-                        >
-                            <Text size="16px">코로나19</Text>
-                        </NavLink>
-
-                        {/* {api &&
-                            api.map((e) => (
-                                <NavLink
-                                    to="/category/category=?${e.category}"
-                                    style={{ textDecoration: "none" }}
-                                    component={A}
-                                >
-                                    {e.category}
-                                </NavLink>
-                            ))} */}
-                    </CategoryInner>
-                </CategoryBody>
-            </header>
-        </div>
-    );
-};
-
-export const Root = () => {
     return (
         <>
-            <HashRouter>
+            <div id="myHeader" className="header">
                 <Category />
-            </HashRouter>
+            </div>
         </>
     );
 };

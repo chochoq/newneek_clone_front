@@ -29,12 +29,12 @@ const Economy = (props) => {
                         <Figure>
                             <img src={economy} alt="economy" width="100%" />
                         </Figure>
-                        <EconomyFooter>
+                        <EconomyFooterNotmain>
                             <Text size="16px">고슴이는 경제초보에서 탈출할 수 있을까요?</Text>
                             <Arrow>
                                 <Line className="arrow" />
                             </Arrow>
-                        </EconomyFooter>
+                        </EconomyFooterNotmain>
                     </EconomyBodyNotMain>
                 </a>
             )}
@@ -100,6 +100,17 @@ const EconomyFooter = styled.div`
     padding: 0.8rem 0;
     border-top: 1px solid #161616;
     border-bottom: 2px solid #000;
+    background: #fff;
+    position: relative;
+`;
+
+const EconomyFooterNotmain = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0.8rem 0;
+    border-top: 1px solid #161616;
     background: #fff;
     position: relative;
 `;

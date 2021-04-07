@@ -1,16 +1,14 @@
-import React, { useEffect, useReducer, useState } from "react";
+import React from "react";
 import "../shared/App.css";
 import styled from "styled-components";
 import _ from "lodash"; // lodash 부르기
 
 import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as newsActions } from "../redux/modules/news";
 
-import { NavLink, Switch, Route, HashRouter, withRouter } from "react-router-dom";
+import { Input, Text } from "../elements/index";
+import { actionCreators as searchActions } from "../redux/modules/search";
 
-import { Button, Input, Text } from "../elements/index";
-
-const Search = () => {
+const Search = (props) => {
     // const debounce = _.debounce((k) => console.log("디바운스! :::", k), 1000);
     // const keyPress = React.useCallback(debounce, []);
 
@@ -25,8 +23,7 @@ const Search = () => {
             window.alert("검색어를 입력해주세요");
             return;
         }
-        console.log(search_text);
-        dispatch(newsActions.getArticleDB(search_text));
+        dispatch(searchActions.addSearch(search_text));
         setSearchText("");
     };
     console.log(search_text);
@@ -81,5 +78,9 @@ const A = styled.a`
     margin: 0.8rem 0;
     text-decoration: none;
 `;
+
+Search.defaultProps = {
+    id: "",
+};
 
 export default Search;

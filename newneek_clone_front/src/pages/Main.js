@@ -3,10 +3,9 @@ import React from "react";
 import AllCardList from "./AllCardList";
 // 스피너
 import { Spinner } from "../elements";
-import { Aside, Banner, Category, Economy, Footer, Header, Hire } from "../component";
+import { Aside, Banner, Root, Economy, Footer, Header, Hire } from "../component";
 // 라우터
 import { BrowserRouter, Route } from "react-router-dom";
-
 
 function App() {
     return (
@@ -16,7 +15,7 @@ function App() {
                 <Hire />
                 <Header />
                 <Banner />
-                <Category />
+                <Root />
                 <div>
                     <AllCardList />
                 </div>

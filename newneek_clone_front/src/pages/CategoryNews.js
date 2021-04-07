@@ -6,7 +6,7 @@ import styled from "styled-components";
 import AllCardList from "./AllCardList";
 
 import { Text } from "../elements/index";
-import { Aside, Category, Footer, Header } from "../component";
+import { Aside, Root, Footer, Header } from "../component";
 
 // 라우터
 import { BrowserRouter } from "react-router-dom";
@@ -16,7 +16,7 @@ const CategoryNews = () => {
         <>
             <BrowserRouter>
                 <Header />
-                <Category />
+                <Root />
                 <CategorySection>
                     <CategoryBody>
                         <CategoryHead>

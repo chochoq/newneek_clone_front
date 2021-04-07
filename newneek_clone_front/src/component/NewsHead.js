@@ -50,7 +50,7 @@ const NewsHead = () => {
                             history.push(`/postDetail/${article.id}`);
                         }}
                     >
-                        {article.category}
+                        {article.categoryName}
                     </Text>
                     <Text size="2.3rem" letterSpacing="`0.75rem" bold padding=".5rem 0 2rem">
                         {article.title}
