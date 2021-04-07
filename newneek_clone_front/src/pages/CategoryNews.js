@@ -10,8 +10,26 @@ import { Aside, Root, Footer, Header } from "../component";
 
 // 라우터
 import { BrowserRouter } from "react-router-dom";
+import axios from "axios";
+import usePromise from "../shared/usePromise";
 
-const CategoryNews = () => {
+const CategoryNews = ({ categoryName }) => {
+    const [loading, response, error] = usePromise(() => {
+        return axios.get(`http://13.125.15.255:8080/api/search?keywords=${categoryName}`);
+    }, [categoryName]);
+
+    if (loading) {
+        return <div>loading</div>;
+    }
+    if (!response) {
+        return null;
+    }
+    if (error) {
+        return console.log(error);
+    }
+    const { articles } = response.data;
+    console.log(articles);
+
     return (
         <>
             <BrowserRouter>
@@ -25,7 +43,7 @@ const CategoryNews = () => {
                             </Text>
                         </CategoryHead>
                     </CategoryBody>
-                    <AllCardList></AllCardList>
+                    {<AllCardList></AllCardList>}
                 </CategorySection>
                 <Aside is_hover>
                     오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이

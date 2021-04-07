@@ -3,11 +3,12 @@ import React from "react";
 import AllCardList from "./AllCardList";
 // 스피너
 import { Spinner } from "../elements";
-import { Aside, Banner, Root, Economy, Footer, Header, Hire } from "../component";
+import { Aside, Banner, Root, Economy, Footer, Header, Hire, Card } from "../component";
 // 라우터
 import { BrowserRouter, Route } from "react-router-dom";
+import Practice from "../shared/Practice";
 
-function App() {
+function Main() {
     return (
         <React.Fragment>
             <BrowserRouter>
@@ -19,6 +20,7 @@ function App() {
                 <div>
                     <AllCardList />
                 </div>
+                <Card />
                 <Economy is_main />
                 <Aside>퀴어 프렌들리한 팀을 위한 뉴닉 레인보우 가이드</Aside>
                 <Aside>3월 8일에 업데이트된 뉴닉의 여성용어 가이드</Aside>
@@ -32,4 +34,4 @@ function App() {
     );
 }
 
-export default App;
+export default Main;
