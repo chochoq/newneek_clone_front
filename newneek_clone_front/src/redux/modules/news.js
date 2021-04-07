@@ -67,7 +67,6 @@ const getArticleDB = (start=null, size=12) => {
             ApiConfig.api
         )
             .then((res) => {
-                console.log("-----------res데이터-------------")
                 console.log(setArticle(res.data));
                 dispatch(setArticle(res.data));
             })

@@ -26,7 +26,6 @@ import { initial } from "lodash";
 
 const Card = (props) => {
     const [api, setApi] = useState(null);
-    const [rel, setRel] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
@@ -57,7 +56,7 @@ const Card = (props) => {
             {api.map((article) => [
                 <Link
                     onClick={() => {
-                        history.push(`/post/${article.id}`);
+                        history.push("/post/" + article.id);
                     }}
                 >
                     <CardDiv>
