@@ -57,17 +57,19 @@ const AllCardList = (props) => {
 
     return (
         <React.Fragment>
-            <Card />
-            {/* <Button
-                width="30%"
-                onClick={() => {
-                    axios
-                        .get(`http://13.125.15.255:8080/api/articles?page=${page}` + 1)
-                        .then(() => {});
-                }}
-            >
-                더보기
-            </Button> */}
+
+            <Body>
+                <Card />
+                <Button
+                    margin="2em 5em 2em 35%"
+                    width="30%"
+                    _onClick={() => {
+                        dispatch(newsActions.getArticleDB(paging.next));
+                    }}
+                >
+                    더보기
+                </Button>
+            </Body>
         </React.Fragment>
     );
 };

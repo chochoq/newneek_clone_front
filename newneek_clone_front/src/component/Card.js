@@ -23,19 +23,27 @@ import Spinner from "../shared/Spinner";
 // contents  : 뉴스 내용
 // id : 뉴스 게시글 프라이머리키
 
-const Card = (props) => {
+const Card = () => {
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
+    const [page, setPage] = useState(0);
+
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetchUsers = async (param) => {
             try {
                 setError(null);
                 setApi(null);
                 setLoading(true);
-                const response = await axios.get("http://13.125.15.255:8080/api/articles");
+
+                const response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
+                setPage(page+1);
+                console.log(response.data, "data");
+                console.log(response.data.page)
+
                 setApi(response.data.articleSummaryList);
+                
             } catch (e) {
                 setError(e);
             }
@@ -43,12 +51,14 @@ const Card = (props) => {
         };
         fetchUsers();
     }, []);
+
     if (!api) return null;
     if (error) return <div>error</div>;
     if (loading) return <Spinner />;
 
     return (
         <>
+
             <div className="posts">
                 {api.map((article) =>
                     article.image === ""
@@ -125,7 +135,6 @@ const Card = (props) => {
         </>
     );
 };
-
 Card.defaultProps = {
     createdAt: "2021-02-27 10:00:00",
     category: "카테고리",
