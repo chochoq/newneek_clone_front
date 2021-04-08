@@ -91,6 +91,7 @@ const SiteButton = styled.a`
     align-items: center;
     justify-content: flex-end;
     margin-bottom: 0.75rem;
+    text-decoration:none;
     color: #161616;
     &: hover {
         color: #fb7800;

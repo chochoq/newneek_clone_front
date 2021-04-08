@@ -9,10 +9,28 @@ body {
         "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+.hover > * :hover {
+    color: #fb7800;
+}
+
+img {
+    max-width: 640px;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.margin_left {
+    margin-left: 0.5rem;
+}
+
 /*    전역스타일    */
 p {
     margin: 0px;
-    word-break: break-all;
+    word-break: keep-all;
 }
 
 h3 {
@@ -44,10 +62,19 @@ em {
     color: rgb(153, 153, 153);
 }
 
+i {
+    font-style: normal;
+}
+
 a {
     color: #161616;
     text-decoration: underline;
 }
+
+/* .card {
+    width: 33.333%;
+    border-image: initial;
+} */
 
 /*    aside    */
 
@@ -183,4 +210,159 @@ a {
     right: 0;
     transform: rotate(50deg);
     transform-origin: bottom right;
+}
+
+/*    card      */
+
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border-color: rgb(22, 22, 22);
+    border-style: solid;
+    border-width: 1px 0px 0px 1px;
+}
+
+.posts-search {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    border-color: rgb(22, 22, 22);
+    border-style: solid;
+    border-width: 1px 0px 0px 1px;
+}
+
+.card {
+    display: block;
+    width: 25%;
+    color: rgb(22, 22, 22);
+    border-style: solid;
+    border-color: rgb(22, 22, 22);
+    border-image: initial;
+    border-width: 0px 1px 1px 0px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.card,
+.card .card-thumbnail {
+    background: rgb(235, 235, 235);
+    box-sizing: border-box;
+    position: relative;
+}
+.card-thumbnail {
+    width: auto;
+    height: auto;
+    margin: 0;
+    border-bottom: 1px solid rgb(22, 22, 22);
+    border-radius: 0px;
+    overflow: hidden;
+}
+
+.card .card-thumbnail > * {
+    filter: grayscale(100%);
+}
+.card .card-body {
+    padding: 1.5rem 1.75rem;
+    box-sizing: border-box;
+}
+.card .card-body > * {
+    filter: grayscale(100%);
+}
+.card .card-body .card-title {
+    margin: 0px 0px 0.5rem;
+    font-size: 1.25rem;
+}
+.card .card-body .card-date {
+    padding: 0px;
+    margin-right: 1em;
+}
+.card .card-body .card-text {
+    display: -webkit-box;
+    margin: 0px 0px 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    height: 3.6em;
+    text-align: left;
+    font-size: 1rem;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.card .card-body .card-newtag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    border-radius: 50%;
+    background: rgb(251, 120, 0);
+    font-family: "Chelsea Market";
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    transform: rotate(-5deg);
+    filter: grayscale(0);
+}
+.card .card-body .card-newtag img {
+    transform: rotate(-10deg);
+}
+.card:hover,
+.card:hover .card-body,
+.card:hover .card-thumbnail {
+    background: rgb(255, 255, 255);
+}
+.card:hover .card-body > *,
+.card:hover .card-thumbnail > * {
+    filter: grayscale(0);
+}
+.card > * {
+    pointer-events: none;
+}
+.card.noimage .card-inner {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+.card.noimage .card-body .card-emoji {
+    display: block;
+    margin-top: -1rem;
+    font-size: 3rem;
+}
+.card.noimage .card-body .card-title {
+    margin: 0.5rem 0px 1rem;
+}
+.card.noimage .card-body .card-date {
+    position: absolute;
+    left: 1.75rem;
+    bottom: 1.5rem;
+}
+.card.noimage .card-body .card-category {
+    position: absolute;
+    left: 7.5rem;
+    bottom: 1.5rem;
+}
+.card.noimage::after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+@media (max-width: 1360px) {
+    .card {
+        width: 33.3333%;
+    }
+}
+@media (max-width: 900px) {
+    .card {
+        width: 50%;
+    }
+}
+@media (max-width: 720px) {
+    .card {
+        width: 100%;
+    }
+    .card.noimage::after {
+        padding-bottom: 75%;
+    }
 }

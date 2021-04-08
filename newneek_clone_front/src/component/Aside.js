@@ -11,29 +11,14 @@ const Aside = (props) => {
 
     return (
         <>
-            {is_hover ? (
-                <AsideBody>
-                    <A
-                        className={hoverd ? "pulse marque" : ""}
-                        onMouseLeave={asideHover}
-                        onMouseOver={asideHover}
-                    >
-                        <Text size="21px">하이</Text>
-                        <ArrowBody>
-                            <Line className="arrow" />
-                        </ArrowBody>
-                    </A>
-                </AsideBody>
-            ) : (
-                <AsideBody>
-                    <A>
-                        <Text size="21px">{text ? text : children}</Text>
-                        <ArrowBody>
-                            <Line className="arrow" />
-                        </ArrowBody>
-                    </A>
-                </AsideBody>
-            )}
+            <AsideBody>
+                <A>
+                    <Text size="21px">{text ? text : children}</Text>
+                    <ArrowBody>
+                        <Line className="arrow" />
+                    </ArrowBody>
+                </A>
+            </AsideBody>
 
             {/* <div className="pulse marque">
                 <p>뉴스레터 구독하기</p>
@@ -78,6 +63,7 @@ const A = styled.a`
     cursor: pointer;
     display: flex;
     align-items: center;
+    text-decoration: none;
     justify-content: space-between;
     max-width: 1360px;
     width: 100%;

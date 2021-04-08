@@ -83,6 +83,7 @@ const NavBarLogo = styled.div`
 const HeadButton = styled.a`
     font-size: 16px;
     margin-right: 21px;
+    text-decoration: none;
     &: hover {
         color: #fb7800;
         cursor: pointer;
