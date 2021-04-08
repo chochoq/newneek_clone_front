@@ -10,8 +10,6 @@ import { Button } from "../elements";
 
 import styled from "styled-components";
 
-import axios from "axios";
-
 // mok api
 // import Data from '../CardDate';
 
@@ -25,10 +23,11 @@ import axios from "axios";
 
 const AllCardList = (props) => {
     const dispatch = useDispatch();
-    const page = Card.data;
-    
-    // console.log(page);
-    // debugger;
+    const article_summary_list = useSelector((state) => state.news.article_summary_list);
+    const loading = useSelector((state) => state.news.loading);
+    const paging = useSelector((state) => state.news.paging);
+
+    const { history } = props;
 
     //       React.useEffect(() => {
     //     //  게시글이 12개 미만일 때는 article_summary_list를 호출해서 목록을 불러옵니다.
@@ -37,7 +36,10 @@ const AllCardList = (props) => {
     //     }
     //   }, []);
 
-    // console.log(page)
+    // api 받아오기
+    useEffect(() => {
+        dispatch(newsActions.getArticleDB());
+    }, []);
 
     return (
         <React.Fragment>
@@ -47,7 +49,7 @@ const AllCardList = (props) => {
                     margin="2em 5em 2em 35%"
                     width="30%"
                     _onClick={() => {
-                        // console.log(page+1)
+                        dispatch(newsActions.getArticleDB(paging.next));
                     }}
                 >
                     더보기
