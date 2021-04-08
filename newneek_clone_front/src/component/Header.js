@@ -23,7 +23,7 @@ const Header = (props) => {
                     </NavBarMenu>
                     <NavBarLogo
                         onClick={() => {
-                            history.push("/#");
+                            history.replace("/");
                         }}
                     >
                         <img src={logo} alt="logo" width="220px" />
@@ -83,6 +83,7 @@ const NavBarLogo = styled.div`
 const HeadButton = styled.a`
     font-size: 16px;
     margin-right: 21px;
+    text-decoration: none;
     &: hover {
         color: #fb7800;
         cursor: pointer;

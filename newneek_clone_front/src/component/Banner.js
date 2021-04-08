@@ -18,8 +18,11 @@ const Banner = () => {
 
             <IntroBody>
                 <IntroInner>
+                    <Text size="16px">
+                        🚀 지금 구독하면 <strong>내일 아침</strong>에 읽을 수 있어요!{" "}
+                    </Text>
                     <Text size="16px" margin="0 0 15px">
-                        ✨지금 <strong>305,408명</strong>이 뉴닉을 읽고 있어요.
+                        ✨ 지금 <strong>305,408명</strong>이 뉴닉을 읽고 있어요.
                     </Text>
                     <Text size="16px" margin="0 0 20px">
                         세상 돌아가는 소식, 알고는 싶지만 신문 볼 새 없이 바쁜 게 우리 탓은

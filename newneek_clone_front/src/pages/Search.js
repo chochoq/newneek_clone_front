@@ -1,32 +1,21 @@
 import React from "react";
 import "../shared/App.css";
 import styled from "styled-components";
-import _ from "lodash"; // lodash 부르기
-
-import { useSelector, useDispatch } from "react-redux";
+import { history } from "../redux/configureStore";
 
 import { Input, Text } from "../elements/index";
-import { actionCreators as searchActions } from "../redux/modules/search";
 
 const Search = (props) => {
-    // const debounce = _.debounce((k) => console.log("디바운스! :::", k), 1000);
-    // const keyPress = React.useCallback(debounce, []);
+    const [text, setText] = React.useState("");
 
-    // const onChange = (e) => {
-    //     keyPress(e.target.value);
-    // };
-
-    const dispatch = useDispatch();
-    const [search_text, setSearchText] = React.useState("");
     const write = () => {
-        if (search_text === "") {
-            window.alert("검색어를 입력해주세요");
+        if (text === "") {
+            window.alert("댓글을 입력해주세요!");
             return;
         }
-        dispatch(searchActions.addSearch(search_text));
-        setSearchText("");
+        setText("");
+        history.push(`/search/post/${text}`);
     };
-    console.log(search_text);
 
     return (
         <SearchBody>
@@ -34,9 +23,9 @@ const Search = (props) => {
                 type="text"
                 is_search
                 placeholder="고슴아 이게 궁금해. (인물, 이슈)"
-                value={search_text}
+                value={text}
                 _onChange={(e) => {
-                    setSearchText(e.target.value);
+                    setText(e.target.value);
                 }}
                 onSubmit={write}
             />

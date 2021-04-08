@@ -8,58 +8,149 @@ import axios from "axios";
 import { NavLink, Switch, Route, HashRouter } from "react-router-dom";
 import { history } from "../redux/configureStore";
 
-const Category = () => {
-    const [api, setApi] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [error, setError] = useState(null);
-    useEffect(() => {
-        const fetchUsers = async () => {
-            try {
-                setError(null);
-                setApi(null);
-                setLoading(true);
-                const response = await axios.get(
-                    "https://6068a5d60add49001734047c.mockapi.io/category"
-                );
-                setApi(response.data);
-            } catch (e) {
-                setError(e);
-            }
-            setLoading(false);
-        };
-        fetchUsers();
-        console.log(api);
-    }, []);
-
-    if (!api) return null;
-    if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
+const Category = (props) => {
+    // const [api, setApi] = useState(null);
+    // const [category, setCategory] = useState(null);
+    // const [loading, setLoading] = useState(false);
+    // const [error, setError] = useState(null);
+    // useEffect(() => {
+    //     const fetchUsers = async () => {
+    //         try {
+    //             setError(null);
+    //             setApi(null);
+    //             setLoading(true);
+    //             const response = await axios.get("http://13.125.15.255:8080/api/articles");
+    //             setApi(response.data.articleSummaryList);
+    //         } catch (e) {
+    //             setError(e);
+    //         }
+    //         setLoading(false);
+    //     };
+    //     fetchUsers();
+    //     console.log(api);
+    // }, []);
+    // console.log(api, "category");
+    // if (!api) return null;
+    // if (error) return <div>error</div>;
+    // if (loading) return <div>spinner..</div>;
 
     return (
-        <div>
+        <div className="hover">
             <CategoryBody>
                 <CategoryInner>
                     <NavLink
+                        exact
                         to="/"
                         style={{ textDecoration: "none" }}
                         component={A}
                         activeClassName="is_active"
                     >
-                        <Text size="16px"> 전체</Text>
+                        <Text size="16px" medium>
+                            {" "}
+                            전체
+                        </Text>
                     </NavLink>
-                    {api &&
-                        api.map((e) => (
-                            <NavLink
-                                key={e.categoryName}
-                                exact={e.categoryName === "all"}
-                                to={e.categoryName === "all" ? "/" : `${e.categoryName}`}
-                                style={{ textDecoration: "none" }}
-                                component={A}
-                                activeClassName="is_active"
-                            >
-                                <Text size="16px">{e.categoryName}</Text>
-                            </NavLink>
-                        ))}
+                    <NavLink
+                        to="/category/5분뉴닉"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            🖐️ 5분뉴닉
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/국내정치"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            국내정치
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/국제·외교"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            국제·외교
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/경제"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            경제
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/노동·일"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            노동·일
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/인권"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            인권
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/테크"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                        className="hover"
+                    >
+                        <Text size="16px" medium className="hover">
+                            테크
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/문화"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            문화
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/환경·에너지"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            환경·에너지
+                        </Text>
+                    </NavLink>
+                    <NavLink
+                        to="/category/코로나19"
+                        style={{ textDecoration: "none" }}
+                        component={A}
+                        activeClassName="is_active"
+                    >
+                        <Text size="16px" medium>
+                            코로나19
+                        </Text>
+                    </NavLink>
                 </CategoryInner>
             </CategoryBody>
         </div>
