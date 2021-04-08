@@ -10,6 +10,7 @@ import styled from "styled-components";
 import "../shared/App.css";
 
 import axios from "axios";
+import Spinner from "../shared/Spinner";
 
 // mok api
 // import Data from '../CardDate';
@@ -44,7 +45,7 @@ const Card = (props) => {
     }, []);
     if (!api) return null;
     if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
+    if (loading) return <Spinner />;
 
     return (
         <>

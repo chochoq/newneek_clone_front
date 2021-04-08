@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 // 페이지
 import AllCardList from "./AllCardList";
+import Spinner from "../shared/Spinner";
 
 import { Text, Button, Image } from "../elements/index";
 import { Aside, Root, Footer, Header } from "../component";
@@ -16,7 +17,6 @@ import { Link } from "react-router-dom";
 
 const SearchNews = (props) => {
     const id = props.match.params.id;
-    console.log(id);
 
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -39,128 +39,122 @@ const SearchNews = (props) => {
         };
         fetchUsers();
     }, []);
+    console.log(api);
     if (!api) return null;
     if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
+    if (loading) return <div>loading</div>;
 
     return (
-        <>
-            <BrowserRouter>
-                <Header />
-                <Root />
-                <CategorySection>
-                    <CategoryBody>
-                        <CategoryHead>
-                            <Text size="1.75rem" medium>
-                                <em>{id}</em>의 검색 결과에요.
-                            </Text>
-                            <Text size="1.1rem" medium>
-                                🦔 고슴이: {api.length}개 찾았슴!
-                            </Text>
-                            <ButtonSection>
-                                <Button width="80px" is_black>
-                                    최신순
-                                </Button>
-                                <Button width="80px" margin="0 0 0 -1px">
-                                    관련순
-                                </Button>
-                            </ButtonSection>
-                        </CategoryHead>
-                        <div className="posts-search">
-                            {api.map((article) =>
-                                article.image === ""
-                                    ? [
-                                          <Link
-                                              key={article.id}
-                                              to={`/post/${article.id}`}
-                                              onClick={() => {
-                                                  history.push(`/post/${article.id}`);
-                                              }}
-                                              className="card noimage"
-                                          >
-                                              <div className="card-inner">
-                                                  <div className="card-body">
-                                                      <span className="card-emoji">
-                                                          {article.categoryName === "코로나19"
-                                                              ? "😷 "
-                                                              : article.categoryName === "5분뉴닉"
-                                                              ? "🖐️ "
-                                                              : article.categoryName === "국내정치"
-                                                              ? "⚖️ "
-                                                              : article.categoryName === "국제·외교"
-                                                              ? "🌐 "
-                                                              : article.categoryName === "경제"
-                                                              ? "💰 "
-                                                              : article.categoryName === "노동·일"
-                                                              ? "💪 "
-                                                              : article.categoryName === "인권"
-                                                              ? "🤝 "
-                                                              : article.categoryName === "테크"
-                                                              ? "🤖 "
-                                                              : article.categoryName === "문화"
-                                                              ? "🧸 "
-                                                              : article.categoryName ===
-                                                                "환경·에너지"
-                                                              ? "🌳 "
-                                                              : null}
-                                                      </span>
-                                                      <h3 className="card-title">
-                                                          {article.title}
-                                                      </h3>
-                                                      <p class="card-text">{article.contents}</p>
+        <BrowserRouter>
+            <Header />
+            <Root />
+            <CategorySection>
+                <CategoryBody>
+                    <CategoryHead>
+                        <Text size="1.75rem" medium>
+                            <em>{id}</em>의 검색 결과에요.
+                        </Text>
+                        <Text size="1.1rem" medium>
+                            🦔 고슴이: {api.length}개 찾았슴!
+                        </Text>
+                        <ButtonSection>
+                            <Button width="80px" is_black>
+                                최신순
+                            </Button>
+                            <Button width="80px" margin="0 0 0 -1px">
+                                관련순
+                            </Button>
+                        </ButtonSection>
+                    </CategoryHead>
+                    <div className="posts-search">
+                        {api.map((article) =>
+                            article.image === ""
+                                ? [
+                                      <Link
+                                          key={article.id}
+                                          to={`/post/${article.id}`}
+                                          onClick={() => {
+                                              history.push(`/post/${article.id}`);
+                                          }}
+                                          className="card noimage"
+                                      >
+                                          <div className="card-inner">
+                                              <div className="card-body">
+                                                  <span className="card-emoji">
+                                                      {article.categoryName === "코로나19"
+                                                          ? "😷 "
+                                                          : article.categoryName === "5분뉴닉"
+                                                          ? "🖐️ "
+                                                          : article.categoryName === "국내정치"
+                                                          ? "⚖️ "
+                                                          : article.categoryName === "국제·외교"
+                                                          ? "🌐 "
+                                                          : article.categoryName === "경제"
+                                                          ? "💰 "
+                                                          : article.categoryName === "노동·일"
+                                                          ? "💪 "
+                                                          : article.categoryName === "인권"
+                                                          ? "🤝 "
+                                                          : article.categoryName === "테크"
+                                                          ? "🤖 "
+                                                          : article.categoryName === "문화"
+                                                          ? "🧸 "
+                                                          : article.categoryName === "환경·에너지"
+                                                          ? "🌳 "
+                                                          : null}
+                                                  </span>
+                                                  <h3 className="card-title">{article.title}</h3>
+                                                  <p class="card-text">{article.contents}</p>
 
-                                                      <time className="card-date">
-                                                          {article.createdAt}
-                                                      </time>
-                                                      <i className="card-category">
-                                                          {article.categoryName}
-                                                      </i>
-                                                  </div>
+                                                  <time className="card-date">
+                                                      {article.createdAt}
+                                                  </time>
+                                                  <i className="card-category">
+                                                      {article.categoryName}
+                                                  </i>
                                               </div>
-                                          </Link>,
-                                      ]
-                                    : [
-                                          <Link
-                                              key={article.id}
-                                              to={`/post/${article.id}`}
-                                              onClick={() => {
-                                                  history.push(`/post/${article.id}`);
-                                              }}
-                                              className="card"
-                                          >
-                                              <div className="card-inner">
-                                                  <figure className="card-thumbnail">
-                                                      <Image
-                                                          shape="rectangle"
-                                                          src={article.image}
-                                                          alt="article"
-                                                      />
-                                                  </figure>
-                                                  <div className="card-body">
-                                                      <h3 className="card-title">
-                                                          {article.title}
-                                                      </h3>
-                                                      <time className="card-date">
-                                                          {article.createdAt}
-                                                      </time>
-                                                      <i className="card-category">
-                                                          {article.categoryName}
-                                                      </i>
-                                                  </div>
+                                          </div>
+                                      </Link>,
+                                  ]
+                                : [
+                                      <Link
+                                          key={article.id}
+                                          to={`/post/${article.id}`}
+                                          onClick={() => {
+                                              history.push(`/post/${article.id}`);
+                                          }}
+                                          className="card"
+                                      >
+                                          <div className="card-inner">
+                                              <figure className="card-thumbnail">
+                                                  <Image
+                                                      shape="rectangle"
+                                                      src={article.image}
+                                                      alt="article"
+                                                  />
+                                              </figure>
+                                              <div className="card-body">
+                                                  <h3 className="card-title">{article.title}</h3>
+                                                  <time className="card-date">
+                                                      {article.createdAt}
+                                                  </time>
+                                                  <i className="card-category">
+                                                      {article.categoryName}
+                                                  </i>
                                               </div>
-                                          </Link>,
-                                      ]
-                            )}
-                        </div>
-                    </CategoryBody>
-                </CategorySection>
-                <Aside is_hover>
-                    오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이
-                    구독했어요!
-                </Aside>
-                <Footer />
-            </BrowserRouter>
-        </>
+                                          </div>
+                                      </Link>,
+                                  ]
+                        )}
+                    </div>
+                </CategoryBody>
+            </CategorySection>
+            <Aside is_hover>
+                오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이
+                구독했어요!
+            </Aside>
+            <Footer />
+        </BrowserRouter>
     );
 };
 

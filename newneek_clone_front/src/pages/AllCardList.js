@@ -8,7 +8,7 @@ import { history } from "../redux/configureStore";
 import Card from "../component/Card";
 import { Button } from "../elements";
 
-import styled from "styled-components";
+import axios from "axios";
 
 // mok api
 // import Data from '../CardDate';
@@ -22,36 +22,52 @@ import styled from "styled-components";
 // id : 뉴스 게시글 프라이머리키
 
 const AllCardList = (props) => {
-    const dispatch = useDispatch();
-    const article_summary_list = useSelector((state) => state.news.article_summary_list);
-    const loading = useSelector((state) => state.news.loading);
-    const paging = useSelector((state) => state.news.paging);
+    console.log(props);
+    // const [api, setApi] = useState(null);
+    // const [loading, setLoading] = useState(false);
+    // const [error, setError] = useState(null);
 
-    const { history } = props;
+    // const [page, setPage] = useState(0);
 
-    //       React.useEffect(() => {
-    //     //  게시글이 12개 미만일 때는 article_summary_list를 호출해서 목록을 불러옵니다.
-    //     if (article_summary_list.length < 12) {
-    //       dispatch(article_summary_list.setArticleDB());
-    //     }
-    //   }, []);
+    // useEffect(() => {
+    //     const fetchUsers = async (param) => {
 
-    // api 받아오기
-    useEffect(() => {
-        dispatch(newsActions.getArticleDB());
-    }, []);
+    //         try {
+    //             setError(null);
+    //             setApi(null);
+    //             setLoading(true);
+
+    //             const response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
+    //             setPage(page+1);
+    //             console.log(response.data, "data");
+    //             console.log(response.data.page+1)
+    //             setApi(response.data.articleSummaryList);
+
+    //         } catch (e) {
+    //             setError(e);
+    //         }
+    //         setLoading(false);
+    //     };
+    //     fetchUsers();
+    // }, []);
+    // // console.log(api, "api");
+    // if (!api) return null;
+    // if (error) return <div>error</div>;
+    // if (loading) return <div>spinner..</div>;
 
     return (
         <React.Fragment>
             <Card />
-            <Button
+            {/* <Button
                 width="30%"
                 onClick={() => {
-                    dispatch(newsActions.getArticleDB(paging.next));
+                    axios
+                        .get(`http://13.125.15.255:8080/api/articles?page=${page}` + 1)
+                        .then(() => {});
                 }}
             >
                 더보기
-            </Button>
+            </Button> */}
         </React.Fragment>
     );
 };

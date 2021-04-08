@@ -23,7 +23,7 @@ const Header = (props) => {
                     </NavBarMenu>
                     <NavBarLogo
                         onClick={() => {
-                            history.push("/#");
+                            history.replace("/");
                         }}
                     >
                         <img src={logo} alt="logo" width="220px" />

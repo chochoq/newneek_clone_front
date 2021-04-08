@@ -9,6 +9,12 @@ body {
         "Droid Sans", "Helvetica Neue", sans-serif;
 }
 
+.orange {
+    font-weight: 600;
+    font-size: 16px;
+    color: #fb7800;
+}
+
 .hover > * :hover {
     color: #fb7800;
 }
@@ -365,4 +371,67 @@ a {
     .card.noimage::after {
         padding-bottom: 75%;
     }
+}
+
+/* .spinner-background {
+    position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ede2ff;
+} */
+
+.container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+.spinner {
+    animation: spin 7s linear infinite;
+}
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loadmore {
+    width: 18rem;
+    margin: 3rem auto;
+    display: flex !important;
+    justify-content: center;
+    flex-wrap: wrap !important;
+}
+
+.secondary-button {
+    display: inline-block;
+    min-width: 104px;
+    padding: 15px 1.5rem 15px;
+    border-radius: 0;
+    text-align: center;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #161616;
+    box-sizing: border-box;
+    background: #fff;
+    color: #161616;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.secondary-button:hover {
+    background: #fb7800;
 }

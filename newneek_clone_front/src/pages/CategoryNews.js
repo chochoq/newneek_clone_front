@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 // 페이지
 import AllCardList from "./AllCardList";
+import Spinner from "../shared/Spinner";
 
 import { Text, Image } from "../elements/index";
 import { Aside, Root, Footer, Header, Card } from "../component";
@@ -39,46 +40,46 @@ const CategoryNews = (props) => {
     }, []);
     if (!api) return null;
     if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
+    if (loading) return <Spinner />;
 
     return (
-        <>
-            <BrowserRouter>
-                <Header />
-                <Root />
-                <CategorySection>
-                    <CategoryBody>
-                        <CategoryHead>
-                            <Text size="2rem" margin="0 12px 0 0">
-                                {id === "코로나19"
-                                    ? "😷 "
-                                    : id === "5분뉴닉"
-                                    ? "🖐️ "
-                                    : id === "국내정치"
-                                    ? "⚖️ "
-                                    : id === "국제·외교"
-                                    ? "🌐 "
-                                    : id === "경제"
-                                    ? "💰 "
-                                    : id === "노동·일"
-                                    ? "💪 "
-                                    : id === "인권"
-                                    ? "🤝 "
-                                    : id === "테크"
-                                    ? "🤖 "
-                                    : id === "문화"
-                                    ? "🧸 "
-                                    : id === "환경·에너지"
-                                    ? "🌳 "
-                                    : null}
-                            </Text>
-                            <Text size="1.75rem" medium>
-                                {id}
-                            </Text>
-                        </CategoryHead>
-                        <div className="posts">
-                            {api.map((article) =>
-                                article.image === ""
+        <BrowserRouter>
+            <Header />
+            <Root />
+            <CategorySection>
+                <CategoryBody>
+                    <CategoryHead>
+                        <Text size="2rem" margin="0 12px 0 0">
+                            {id === "코로나19"
+                                ? "😷 "
+                                : id === "5분뉴닉"
+                                ? "🖐️ "
+                                : id === "국내정치"
+                                ? "⚖️ "
+                                : id === "국제·외교"
+                                ? "🌐 "
+                                : id === "경제"
+                                ? "💰 "
+                                : id === "노동·일"
+                                ? "💪 "
+                                : id === "인권"
+                                ? "🤝 "
+                                : id === "테크"
+                                ? "🤖 "
+                                : id === "문화"
+                                ? "🧸 "
+                                : id === "환경·에너지"
+                                ? "🌳 "
+                                : null}
+                        </Text>
+                        <Text size="1.75rem" medium>
+                            {id}
+                        </Text>
+                    </CategoryHead>
+                    <div className="posts">
+                        {api.map((article) =>
+                            article.categoryName === id
+                                ? article.image === ""
                                     ? [
                                           <Link
                                               key={article.id}
@@ -160,17 +161,17 @@ const CategoryNews = (props) => {
                                               </div>
                                           </Link>,
                                       ]
-                            )}
-                        </div>
-                    </CategoryBody>
-                </CategorySection>
-                <Aside is_hover>
-                    오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이
-                    구독했어요!
-                </Aside>
-                <Footer />
-            </BrowserRouter>
-        </>
+                                : null
+                        )}
+                    </div>
+                </CategoryBody>
+            </CategorySection>
+            <Aside is_hover>
+                오늘까지 <strong>368회</strong> 뉴스레터를 발행했고 <strong>305,408명</strong>이
+                구독했어요!
+            </Aside>
+            <Footer />
+        </BrowserRouter>
     );
 };
 

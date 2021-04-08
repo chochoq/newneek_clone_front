@@ -1,18 +1,11 @@
 import React from "react";
 import "../shared/App.css";
 import styled from "styled-components";
-import _ from "lodash"; // lodash 부르기
-
-import { useSelector, useDispatch } from "react-redux";
 import { history } from "../redux/configureStore";
 
 import { Input, Text } from "../elements/index";
-import { actionCreators as searchActions } from "../redux/modules/search";
 
 const Search = (props) => {
-    // const debounce = _.debounce((k) => console.log("디바운스! :::", k), 1000);
-    // const keyPress = React.useCallback(debounce, []);
-
     const [text, setText] = React.useState("");
 
     const write = () => {

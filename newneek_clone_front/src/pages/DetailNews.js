@@ -8,6 +8,7 @@ import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
+import Spinner from "../shared/Spinner";
 
 // 컴포넌트
 import { Aside, Card, Economy, Footer, Header } from "../component";
@@ -30,7 +31,6 @@ const DetaillNews = (props) => {
             try {
                 setError(null);
                 setApi(null);
-                setApi(null);
                 setLoading(true);
                 const response = await axios.get("http://13.125.15.255:8080/api/articles/" + id);
                 setApi(response.data);
@@ -44,14 +44,14 @@ const DetaillNews = (props) => {
     }, []);
     if (!api) return null;
     if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
+    if (loading) return <Spinner />;
 
     return (
         <React.Fragment>
             <Header />
             <Center>
                 <Link
-                    font-color="#FB7800"
+                    className="orange"
                     size="1rem"
                     bold
                     is_underline
@@ -62,7 +62,7 @@ const DetaillNews = (props) => {
                 >
                     {api.article.categoryName}
                 </Link>
-                <Text size="2.3rem" letterSpacing="`0.75rem" bold padding=".5rem 0 2rem">
+                <Text size="2.3rem" letterSpacing="`0.75rem" bold padding="0 0 2rem">
                     {api.article.title}
                 </Text>
                 <Text size="1rem">{api.article.createdAt}</Text>
@@ -112,30 +112,87 @@ const DetaillNews = (props) => {
             <PostRelative>
                 <RelativeInner>
                     <RelativeHead>이런 이슈도 궁금하실 것 같아요</RelativeHead>
-                    {rel.map((article) => [
-                        <Link
-                            onClick={() => {
-                                history.push("/post/" + article.id);
-                                console.log(article.id);
-                            }}
-                        >
-                            <CardDiv>
-                                <CardInner>
-                                    <Image shape="rectangle" src={article.image} />
-                                    <CardBody>
-                                        <Text padding="0.5em 0em" size="1.25rem" bold>
-                                            {article.title}
-                                        </Text>
-                                        <CardText>{article.contents}</CardText>
-                                        <CardSmall>
-                                            <CardDate>{article.createdAt}</CardDate>
-                                            <CardCategory>{article.categoryName}</CardCategory>
-                                        </CardSmall>
-                                    </CardBody>
-                                </CardInner>
-                            </CardDiv>
-                        </Link>,
-                    ])}
+                    <div className="posts">
+                        {rel.map((article) =>
+                            article.image === ""
+                                ? [
+                                      <Link
+                                          key={article.id}
+                                          to={`/post/${article.id}`}
+                                          onClick={() => {
+                                              window.location.reload();
+                                          }}
+                                          className="card noimage"
+                                      >
+                                          <div className="card-inner">
+                                              <div className="card-body">
+                                                  <span className="card-emoji">
+                                                      {article.categoryName === "코로나19"
+                                                          ? "😷 "
+                                                          : article.categoryName === "5분뉴닉"
+                                                          ? "🖐️ "
+                                                          : article.categoryName === "국내정치"
+                                                          ? "⚖️ "
+                                                          : article.categoryName === "국제·외교"
+                                                          ? "🌐 "
+                                                          : article.categoryName === "경제"
+                                                          ? "💰 "
+                                                          : article.categoryName === "노동·일"
+                                                          ? "💪 "
+                                                          : article.categoryName === "인권"
+                                                          ? "🤝 "
+                                                          : article.categoryName === "테크"
+                                                          ? "🤖 "
+                                                          : article.categoryName === "문화"
+                                                          ? "🧸 "
+                                                          : article.categoryName === "환경·에너지"
+                                                          ? "🌳 "
+                                                          : null}
+                                                  </span>
+                                                  <h3 className="card-title">{article.title}</h3>
+                                                  <p class="card-text">{article.contents}</p>
+
+                                                  <time className="card-date">
+                                                      {article.createdAt}
+                                                  </time>
+                                                  <i className="card-category">
+                                                      {article.categoryName}
+                                                  </i>
+                                              </div>
+                                          </div>
+                                      </Link>,
+                                  ]
+                                : [
+                                      <Link
+                                          key={article.id}
+                                          to={`/post/${article.id}`}
+                                          onClick={() => {
+                                              window.location.reload();
+                                          }}
+                                          className="card"
+                                      >
+                                          <div className="card-inner">
+                                              <figure className="card-thumbnail">
+                                                  <Image
+                                                      shape="rectangle"
+                                                      src={article.image}
+                                                      alt="article"
+                                                  />
+                                              </figure>
+                                              <div className="card-body">
+                                                  <h3 className="card-title">{article.title}</h3>
+                                                  <time className="card-date">
+                                                      {article.createdAt}
+                                                  </time>
+                                                  <i className="card-category">
+                                                      {article.categoryName}
+                                                  </i>
+                                              </div>
+                                          </div>
+                                      </Link>,
+                                  ]
+                        )}
+                    </div>
                 </RelativeInner>
             </PostRelative>
             <Economy />
