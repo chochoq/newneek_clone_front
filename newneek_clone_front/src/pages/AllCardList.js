@@ -1,75 +1,141 @@
 // AllCardList.js
-import React, { useEffect, useReducer, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { actionCreators as newsActions } from "../redux/modules/news";
+import React, { useEffect, useState } from "react";
 
 import { history } from "../redux/configureStore";
+import { Link } from "react-router-dom";
 
-import Card from "../component/Card";
-import { Button } from "../elements";
+import { Image } from "../elements";
 
 import axios from "axios";
 
-// mok api
-// import Data from '../CardDate';
-
-// 뉴스레터 1개 뷰를 담당한다  article
-// createdAt : 뉴스 생성일자 초까지
-// category : 뉴스 카테고리
-// title   : 뉴스 제목
-// image   : 뉴스 이미지
-// contents  : 뉴스 내용
-// id : 뉴스 게시글 프라이머리키
-
 const AllCardList = (props) => {
     console.log(props);
-    // const [api, setApi] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(null);
+    const [api, setApi] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    // const [page, setPage] = useState(0);
+    const [page, setPage] = useState(0);
 
-    // useEffect(() => {
-    //     const fetchUsers = async (param) => {
+    useEffect(() => {
+        const fetchUsers = async (param) => {
+            try {
+                setError(null);
+                setApi(null);
+                setLoading(true);
 
-    //         try {
-    //             setError(null);
-    //             setApi(null);
-    //             setLoading(true);
+                const response = await axios.get(
+                    `http://13.125.15.255:8080/api/articles?page=${page}`
+                );
+                setPage(page + 1);
+                console.log(response.data, "data");
+                console.log(response.data.page + 1);
+                setApi(response.data.articleSummaryList);
+            } catch (e) {
+                setError(e);
+            }
+            setLoading(false);
+        };
+        fetchUsers();
+    }, []);
+    // console.log(api, "api");
+    if (!api) return null;
+    if (error) return <div>error</div>;
+    if (loading) return <div>spinner..</div>;
 
-    //             const response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
-    //             setPage(page+1);
-    //             console.log(response.data, "data");
-    //             console.log(response.data.page+1)
-    //             setApi(response.data.articleSummaryList);
-
-    //         } catch (e) {
-    //             setError(e);
-    //         }
-    //         setLoading(false);
-    //     };
-    //     fetchUsers();
-    // }, []);
-    // // console.log(api, "api");
-    // if (!api) return null;
-    // if (error) return <div>error</div>;
-    // if (loading) return <div>spinner..</div>;
+    const Plus = async () => {
+        let response;
+        try {
+            setError(null);
+            setApi(null);
+            setLoading(true);
+            response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
+        } catch (e) {
+            setError(e);
+        } finally {
+            setApi(api.concat(response.data.articleSummaryList));
+            setPage(page + 1);
+        }
+        setLoading(false);
+    };
 
     return (
         <React.Fragment>
+            <div className="posts">
+                {api.map((article) =>
+                    article.image === ""
+                        ? [
+                              <Link
+                                  key={article.id}
+                                  to={`/post/${article.id}`}
+                                  onClick={() => {
+                                      history.push(`/post/${article.id}`);
+                                  }}
+                                  className="card noimage"
+                              >
+                                  <div className="card-inner">
+                                      <div className="card-body">
+                                          <span className="card-emoji">
+                                              {article.categoryName === "코로나19"
+                                                  ? "😷 "
+                                                  : article.categoryName === "5분뉴닉"
+                                                  ? "🖐️ "
+                                                  : article.categoryName === "국내정치"
+                                                  ? "⚖️ "
+                                                  : article.categoryName === "국제·외교"
+                                                  ? "🌐 "
+                                                  : article.categoryName === "경제"
+                                                  ? "💰 "
+                                                  : article.categoryName === "노동·일"
+                                                  ? "💪 "
+                                                  : article.categoryName === "인권"
+                                                  ? "🤝 "
+                                                  : article.categoryName === "테크"
+                                                  ? "🤖 "
+                                                  : article.categoryName === "문화"
+                                                  ? "🧸 "
+                                                  : article.categoryName === "환경·에너지"
+                                                  ? "🌳 "
+                                                  : null}
+                                          </span>
+                                          <h3 className="card-title">{article.title}</h3>
+                                          <p class="card-text">{article.contents}</p>
 
-            <Body>
-                <Card />
-                <Button
-                    margin="2em 5em 2em 35%"
-                    width="30%"
-                    _onClick={() => {
-                        dispatch(newsActions.getArticleDB(paging.next));
-                    }}
-                >
-                    더보기
-                </Button>
-            </Body>
+                                          <time className="card-date">{article.createdAt}</time>
+                                          <i className="card-category">{article.categoryName}</i>
+                                      </div>
+                                  </div>
+                              </Link>,
+                          ]
+                        : [
+                              <Link
+                                  key={article.id}
+                                  to={`/post/${article.id}`}
+                                  onClick={() => {
+                                      window.location.reload();
+                                  }}
+                                  className="card"
+                              >
+                                  <div className="card-inner">
+                                      <figure className="card-thumbnail">
+                                          <Image
+                                              shape="rectangle"
+                                              src={article.image}
+                                              alt="article"
+                                          />
+                                      </figure>
+                                      <div className="card-body">
+                                          <h3 className="card-title">{article.title}</h3>
+                                          <time className="card-date">{article.createdAt}</time>
+                                          <i className="card-category">{article.categoryName}</i>
+                                      </div>
+                                  </div>
+                              </Link>,
+                          ]
+                )}
+            </div>
+            <button className="loadmore secondary-button" onClick={Plus}>
+                더보기
+            </button>
         </React.Fragment>
     );
 };
@@ -82,9 +148,5 @@ AllCardList.defaultProps = {
     contents: "내용",
     id: 0,
 };
-
-// const Body = styled.div`
-//     padding: 0 5%;
-// `;
 
 export default AllCardList;

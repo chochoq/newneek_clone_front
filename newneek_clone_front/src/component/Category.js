@@ -1,39 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "../shared/App.css";
 import styled from "styled-components";
 import { Text } from "../elements/index";
-import { Economy, Hire } from "./index";
 
-import axios from "axios";
-import { NavLink, Switch, Route, HashRouter } from "react-router-dom";
-import { history } from "../redux/configureStore";
+import { NavLink } from "react-router-dom";
 
 const Category = (props) => {
-    // const [api, setApi] = useState(null);
-    // const [category, setCategory] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(null);
-    // useEffect(() => {
-    //     const fetchUsers = async () => {
-    //         try {
-    //             setError(null);
-    //             setApi(null);
-    //             setLoading(true);
-    //             const response = await axios.get("http://13.125.15.255:8080/api/articles");
-    //             setApi(response.data.articleSummaryList);
-    //         } catch (e) {
-    //             setError(e);
-    //         }
-    //         setLoading(false);
-    //     };
-    //     fetchUsers();
-    //     console.log(api);
-    // }, []);
-    // console.log(api, "category");
-    // if (!api) return null;
-    // if (error) return <div>error</div>;
-    // if (loading) return <div>spinner..</div>;
-
     return (
         <div className="hover">
             <CategoryBody>
