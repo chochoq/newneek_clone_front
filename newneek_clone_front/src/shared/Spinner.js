@@ -8,7 +8,7 @@ const Spinner = () => {
         <div className="spinner-background">
             <div className="container">
                 <div className="spinner">
-                    <img src={spinner} alt={spinner} width="240px" />
+                    <img src={spinner} alt={spinner} style={{ width: 240, height: 240 }} />
                 </div>
             </div>
         </div>

@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 
 const SearchNews = (props) => {
     const id = props.match.params.id;
+    console.log(props);
 
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);

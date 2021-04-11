@@ -7,13 +7,13 @@ import { Link } from "react-router-dom";
 import { Image } from "../elements";
 
 import axios from "axios";
+import Spinner from "../shared/Spinner";
 
 const AllCardList = (props) => {
     console.log(props);
     const [api, setApi] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const [page, setPage] = useState(0);
 
     useEffect(() => {
@@ -22,43 +22,53 @@ const AllCardList = (props) => {
                 setError(null);
                 setApi(null);
                 setLoading(true);
-
                 const response = await axios.get(
                     `http://13.125.15.255:8080/api/articles?page=${page}`
                 );
-                setPage(page + 1);
-                console.log(response.data, "data");
-                console.log(response.data.page + 1);
-                setApi(response.data.articleSummaryList);
+                setApi(() => {
+                    if (response.data.articleSummaryList) {
+                        setLoading(false);
+                        return response.data.articleSummaryList;
+                    } else {
+                        setLoading(true);
+                        return [];
+                    }
+                });
             } catch (e) {
                 setError(e);
             }
-            setLoading(false);
         };
         fetchUsers();
     }, []);
-    // console.log(api, "api");
+
+    useEffect(() => {
+        if (page !== 0) {
+            let response;
+            const paging = async (page) => {
+                try {
+                    response = await axios.get(
+                        `http://13.125.15.255:8080/api/articles?page=${page}`
+                    );
+                    setApi((prev) => {
+                        return [...prev, ...response.data.articleSummaryList];
+                    });
+                } catch (e) {
+                    setError(e);
+                }
+            };
+            paging(page);
+        }
+    }, [page]);
     if (!api) return null;
     if (error) return <div>error</div>;
-    if (loading) return <div>spinner..</div>;
 
     const Plus = async () => {
-        let response;
-        try {
-            setError(null);
-            setApi(null);
-            setLoading(true);
-            response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
-        } catch (e) {
-            setError(e);
-        } finally {
-            setApi(api.concat(response.data.articleSummaryList));
-            setPage(page + 1);
-        }
-        setLoading(false);
+        setPage(page + 1);
     };
 
-    return (
+    return loading ? (
+        <Spinner />
+    ) : (
         <React.Fragment>
             <div className="posts">
                 {api.map((article) =>
