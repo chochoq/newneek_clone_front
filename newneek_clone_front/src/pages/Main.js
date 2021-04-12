@@ -7,7 +7,7 @@ import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 
 // 페이지
-import AllCardList from "./AllCardList";
+
 import Button from "../elements/Button";
 // 스피너
 import Spinner from "../shared/Spinner";
