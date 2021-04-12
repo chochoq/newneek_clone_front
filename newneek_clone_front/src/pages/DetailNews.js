@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import "../shared/App.css";
 
-import { Button, Text, Image } from "../elements";
+import { Text, Image } from "../elements";
 
 import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
@@ -11,12 +11,7 @@ import axios from "axios";
 import Spinner from "../shared/Spinner";
 
 // 컴포넌트
-import { Aside, Card, Economy, Footer, Header } from "../component";
-
-// 라우터
-import { BrowserRouter, Route } from "react-router-dom";
-import { ConnectedRouter } from "connected-react-router";
-import NewsHead from "../component/NewsHead";
+import { Aside, Economy, Footer, Header } from "../component";
 
 const DetaillNews = (props) => {
     const id = props.match.params.id;

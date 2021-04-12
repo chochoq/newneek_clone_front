@@ -2,10 +2,6 @@ import React, { useEffect, useState } from "react";
 import "../shared/App.css";
 import styled from "styled-components";
 
-// 페이지
-import AllCardList from "./AllCardList";
-import Spinner from "../shared/Spinner";
-
 import { Text, Button, Image } from "../elements/index";
 import { Aside, Root, Footer, Header } from "../component";
 
@@ -17,6 +13,7 @@ import { Link } from "react-router-dom";
 
 const SearchNews = (props) => {
     const id = props.match.params.id;
+    console.log(props);
 
     const [api, setApi] = useState(null);
     const [loading, setLoading] = useState(false);

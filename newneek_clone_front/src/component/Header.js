@@ -7,7 +7,7 @@ import { Button } from "../elements";
 import logo from "../shared/logo.png";
 
 import { history } from "../redux/configureStore";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
 const Header = (props) => {
     return (

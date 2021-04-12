@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import "../shared/App.css";
 import styled from "styled-components";
-import { Text, Input, Button } from "../elements/index";
-import { NavLink, Link } from "react-router-dom";
+import { Text } from "../elements/index";
 
 const Aside = (props) => {
-    const { text, children, is_hover } = props;
-    const [hoverd, setHoverd] = useState(false);
-    const asideHover = () => setHoverd(!hoverd);
+    const { text, children } = props;
 
     return (
         <>

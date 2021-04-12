@@ -6,7 +6,6 @@ import { history } from "../redux/configureStore";
 import { Link } from "react-router-dom";
 
 // 스타일
-import styled from "styled-components";
 import "../shared/App.css";
 
 import axios from "axios";
@@ -37,13 +36,14 @@ const Card = () => {
                 setApi(null);
                 setLoading(true);
 
-                const response = await axios.get(`http://13.125.15.255:8080/api/articles?page=${page}`);
-                setPage(page+1);
+                const response = await axios.get(
+                    `http://13.125.15.255:8080/api/articles?page=${page}`
+                );
+                setPage(page + 1);
                 console.log(response.data, "data");
-                console.log(response.data.page)
+                console.log(response.data.page);
 
                 setApi(response.data.articleSummaryList);
-                
             } catch (e) {
                 setError(e);
             }
@@ -58,7 +58,6 @@ const Card = () => {
 
     return (
         <>
-
             <div className="posts">
                 {api.map((article) =>
                     article.image === ""
