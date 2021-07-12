@@ -87,13 +87,9 @@
 
 ---
 
-<<<<<<< HEAD
 
 
-[작성자의 노션](https://www.notion.so/7734c011b0664a87a1f7d071f8ce4e02)
-=======
 [작성자의 노션](https://www.notion.so/7734c011b0664a87a1f7d071f8ce4e02)
 
 spirng boot back end repository
 https://github.com/chochoq/newneek_clone_back
->>>>>>> 196163e241fe2e0d3e2f582f0acff9922485136b
